@@ -9,7 +9,7 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 * Support JSON
   * CSS selectors
   * JSONPath
-* Offer the option to replace the whole line or just the Syslog message part.
+* Offer the option to just the Syslog message part or replace the whole line.
 
 ## Future TODO
 * Support [GELF](http://docs.graylog.org/en/latest/pages/gelf.html)
