@@ -29,6 +29,8 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
     * 75/25 Syslog/JSON
     * 50/50 Syslog and JSON
     * 75/25 JSON/Syslog
+* Disable buffering from the beginning
+  * Enable buffering after a while based on how fast the data is flowing?
 
 ## Future TODO
 * Support [GELF](http://docs.graylog.org/en/latest/pages/gelf.html)
