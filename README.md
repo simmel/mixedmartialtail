@@ -5,10 +5,10 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 ## TODO
 * Plugin structure for formats so new ones can be added easily
 * Follow the [UNIX philosophy](https://en.wikipedia.org/wiki/Unix_philosophy#Do_One_Thing_and_Do_It_Well) to do one thing and do it well.
-** Don't tail; `tail -F` can do that so much better.
+  * Don't tail; `tail -F` can do that so much better.
 * Support JSON
-** CSS selectors
-** JSONPath
+  * CSS selectors
+  * JSONPath
 * Offer the option to replace the whole line or just the Syslog message part.
 
 ## Future TODO
