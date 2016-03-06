@@ -2,6 +2,14 @@
 
 mmt is a warlike and bruteforce approach to tailing logs with mixed formats in them.
 
+## Design
+### Main program
+* Load all the plugins and add their "name" to an array.
+* Read one line at the time, buffers turned off (I guess?)
+* Loop through all of the plugins matchers on that line and if it matches:
+  * Run the apply method on the line
+* Check if we're supposed to replace the whole line or just the message part. 
+
 ## TODO
 * Have as few options as possible and have sane defaults.
 * Plugin structure for formats so new ones can be added easily
