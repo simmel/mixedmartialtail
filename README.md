@@ -8,7 +8,8 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 * Read one line at the time, buffers turned off (I guess?)
 * Loop through all of the plugins matchers on that line and if it matches:
   * Run the apply method on the line
-* Check if we're supposed to replace the whole line or just the message part. 
+* Check if we're supposed to replace the whole line or just the message part.
+
 ### Plugin
 * `match` method which takes a line as input and see if we want to deal with this line.
 * `apply` method which takes a line and format options as input and transforms the line into a the format we want.
