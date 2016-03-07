@@ -30,6 +30,8 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
     * 75/25 Syslog/JSON
     * 50/50 Syslog and JSON
     * 75/25 JSON/Syslog
+  * Use [these](http://log-sharing.dreamhosters.com/) as a baseline.
+    * Convert the Apache ones to json via Logstash.
 * Disable buffering from the beginning
   * Enable buffering after a while based on how fast the data is flowing?
 
