@@ -13,5 +13,8 @@ addons:
 #install: "pip install -r requirements.txt"
 # command to run tests
 script:
-  - curl -o README.md https://stockholmuniversity.box.com/shared/static/o5rrth2woud8ti0af3ywrk1z2fo6pfmf.md
-  - cat README.md
+  - time curl -o demo.log.lrz https://stockholmuniversity.box.com/shared/static/u30tyl64mvngrl6b2hlksu5tu2i0wq9u.lrz
+  - time lrzip -cdk -o demo.log demo.log.lrz
+  - time cat demo.log >/dev/null
+  - time cat demo.log >/dev/null
+  - time cat demo.log >/dev/null
