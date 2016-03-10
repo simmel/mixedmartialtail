@@ -18,3 +18,4 @@ script:
   - time cat demo.log >/dev/null
   - time cat demo.log >/dev/null
   - time cat demo.log >/dev/null
+  - time du -sh demo.log*
