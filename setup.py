@@ -25,5 +25,14 @@ setup(
         'console_scripts': [
             'mmt=mixedmartialtail:main'
         ]
-    }
+    },
+    extras_require={
+        'dev': [
+            'check-manifest',
+        ],
+        'test': [
+            'check-manifest',
+            'pytest',
+        ],
+    },
 )

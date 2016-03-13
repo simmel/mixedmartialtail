@@ -9,9 +9,7 @@ addons:
   apt:
     packages:
     - lrzip
-# command to install dependencies
-#install: "pip install -r requirements.txt"
-# command to run tests
+install: "make pre-test"
 script:
   - time curl -o demo.log.lrz -L https://stockholmuniversity.box.com/shared/static/u30tyl64mvngrl6b2hlksu5tu2i0wq9u.lrz
   - time lrzip -cdk -o demo.log demo.log.lrz
@@ -19,3 +17,4 @@ script:
   - time cat demo.log >/dev/null
   - time cat demo.log >/dev/null
   - time du -sh demo.log*
+  - make test
