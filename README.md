@@ -23,7 +23,7 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
   * CSS selectors
   * JSONPath
 * Offer the option to just the Syslog message part or replace the whole line.
-* Add benchmarks and run them on TravisCI on every commit. Make sure we log in a structured way so we can create a graph of how slow we are.
+* Add [benchmarks](https://pypi.python.org/pypi/pytest-benchmark/) and run them on TravisCI on every commit. Make sure we log in a structured way so we can create a graph of how slow we are.
   * Add a few log files for the test:
     * One huge
     * 100% Syslog
