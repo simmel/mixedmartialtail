@@ -28,3 +28,14 @@ pip-delete-this-directory.txt
 # virtualenv
 venv/
 ENV/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+.hypothesis/
