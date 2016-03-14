@@ -1,0 +1,3 @@
+include *.md
+recursive-include mixedmartialtail *.py
+recursive-include tests *.py
