@@ -6,7 +6,7 @@ python:
   - "pypy"
   - "pypy3"
 env:
-  - TIME_CMD=/usr/bin/time -f 'real=%e system=%S user=%S max_rss=%M io=%I ctx_switch=%w exit=%x cmd="%C"'
+  - TIME_CMD="/usr/bin/time -f 'real=%e system=%S user=%S max_rss=%M io=%I ctx_switch=%w exit=%x cmd=\"%C\"'"
 addons:
   apt:
     packages:
