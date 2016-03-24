@@ -5,6 +5,8 @@ python:
   - "3.5"
   - "pypy"
   - "pypy3"
+env:
+  - TIME_FORMAT='real=%e system=%S user=%S max_rss=%M io=%I ctx_switch=%w exit=%x cmd="%C"'
 addons:
   apt:
     packages:
@@ -15,10 +17,10 @@ script:
   - echo $TIME_CMD
   - env
   - echo $SHELL
-  - $TIME_CMD curl -o demo.log.lrz -L https://stockholmuniversity.box.com/shared/static/u30tyl64mvngrl6b2hlksu5tu2i0wq9u.lrz
-  - $TIME_CMD lrzip -cdk -o demo.log demo.log.lrz
-  - $TIME_CMD cat demo.log >/dev/null
-  - $TIME_CMD cat demo.log >/dev/null
-  - $TIME_CMD cat demo.log >/dev/null
-  - $TIME_CMD du -sh demo.log*
+  - /usr/bin/time -f "$TIME_FORMAT" curl -o demo.log.lrz -L https://stockholmuniversity.box.com/shared/static/u30tyl64mvngrl6b2hlksu5tu2i0wq9u.lrz
+  - /usr/bin/time -f "$TIME_FORMAT" lrzip -cdk -o demo.log demo.log.lrz
+  - /usr/bin/time -f "$TIME_FORMAT" cat demo.log >/dev/null
+  - /usr/bin/time -f "$TIME_FORMAT" cat demo.log >/dev/null
+  - /usr/bin/time -f "$TIME_FORMAT" cat demo.log >/dev/null
+  - /usr/bin/time -f "$TIME_FORMAT" du -sh demo.log*
   - make test
