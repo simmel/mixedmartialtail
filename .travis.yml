@@ -12,8 +12,9 @@ addons:
     - time
 install: "make pre-test"
 script:
-  - whereis time
-  - which time
+  - echo $TIME_CMD
+  - env
+  - echo $SHELL
   - $TIME_CMD curl -o demo.log.lrz -L https://stockholmuniversity.box.com/shared/static/u30tyl64mvngrl6b2hlksu5tu2i0wq9u.lrz
   - $TIME_CMD lrzip -cdk -o demo.log demo.log.lrz
   - $TIME_CMD cat demo.log >/dev/null
