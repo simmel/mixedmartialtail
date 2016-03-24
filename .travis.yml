@@ -9,6 +9,7 @@ addons:
   apt:
     packages:
     - lrzip
+    - time
 install: "make pre-test"
 script:
   - whereis time
