@@ -14,9 +14,6 @@ addons:
     - time
 install: "make pre-test"
 script:
-  - echo $TIME_CMD
-  - env
-  - echo $SHELL
   - /usr/bin/time -f "$TIME_FORMAT" curl -o demo.log.lrz -L https://stockholmuniversity.box.com/shared/static/u30tyl64mvngrl6b2hlksu5tu2i0wq9u.lrz
   - /usr/bin/time -f "$TIME_FORMAT" lrzip -cdk -o demo.log demo.log.lrz
   - /usr/bin/time -f "$TIME_FORMAT" cat demo.log >/dev/null
