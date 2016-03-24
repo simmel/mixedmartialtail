@@ -1,3 +1,6 @@
+build:
+	./setup.py sdist bdist_wheel
+
 test:
 	py.test
 
