@@ -1,4 +1,8 @@
-PIP=$(shell which pip3 || which pip)
+ifndef CI
+	PIP=$(shell which pip3 || which pip)
+else
+	PIP=pip
+endif
 
 build:
 	./setup.py sdist bdist_wheel
