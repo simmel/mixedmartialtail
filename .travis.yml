@@ -21,3 +21,4 @@ script:
   - /usr/bin/time -f "$TIME_FORMAT" cat demo.log >/dev/null
   - /usr/bin/time -f "$TIME_FORMAT" du -sh demo.log*
   - make test
+  - make benchmark

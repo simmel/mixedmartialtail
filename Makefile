@@ -4,7 +4,11 @@ build:
 	./setup.py sdist bdist_wheel
 
 test:
-	py.test
+	py.test --benchmark-skip
+
+benchmark:
+	py.test --benchmark-only --benchmark-autosave --benchmark-warmup
+	find .benchmarks -iname "*.json" -exec perl -pe 'END { print "\n"; }' {} \;
 
 pre-test:
 	$(PIP) install -e '.[test]'

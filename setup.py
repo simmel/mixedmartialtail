@@ -33,6 +33,7 @@ setup(
         'test': [
             'check-manifest',
             'pytest',
+            'pytest-benchmark',
         ],
     },
 )
