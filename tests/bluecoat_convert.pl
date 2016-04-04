@@ -15,6 +15,7 @@ while (<>) {
     $date = strftime("%d/%b/%Y:%T %z", gmtime($date));
     print "$+{ip} - - [$date] \"$+{http_method} $+{url} HTTP/1.0\" $+{http_status} $+{bytes} \"-\" $+{useragent}\n";
   }
+  elsif (/^#/) {}
   else {
     die $_;
   }
