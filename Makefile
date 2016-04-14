@@ -16,3 +16,13 @@ benchmark:
 
 pre-test:
 	$(PIP) install -e '.[test]'
+
+.PHONY: create-logs build-benchmark-logs
+
+create-logs:
+	$(MAKE) -C logs
+
+logs.tar.lrz: create-logs
+	lrztar -k logs
+
+build-benchmark-logs: logs.tar.lrz
