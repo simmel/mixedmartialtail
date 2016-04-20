@@ -14,11 +14,13 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 * `match` method which takes a line as input and see if we want to deal with this line.
 * `apply` method which takes a line and format options as input and transforms the line into a the format we want.
 
-## TODO
+## Guidelines
 * Have as few options as possible and have sane defaults.
 * Plugin structure for formats so new ones can be added easily
 * Follow the [UNIX philosophy](https://en.wikipedia.org/wiki/Unix_philosophy#Do_One_Thing_and_Do_It_Well) to do one thing and do it well.
   * Don't tail; `tail -F` can do that so much better.
+
+## TODO
 * Support JSON
   * CSS selectors
   * JSONPath
