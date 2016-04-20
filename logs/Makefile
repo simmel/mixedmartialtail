@@ -16,4 +16,4 @@ demo_w3c.log: $(BLUECOAT_LOGS)
 	time cat Demo_log_00*.log | ../tests/bluecoat_convert.pl | iconv -f latin1 -t utf8 > demo_w3c.log
 
 mmt_json_%p.log: demo_w3c.log
-	time cat demo_w3c.log | PERCENTAGE=$* logstash agent -f ../tests/to_mixed_json_format.conf > $@
+	time cat demo_w3c.log | OUTPUT_FILE=$@ PERCENTAGE=$* logstash agent -f ../tests/to_mixed_json_format.conf
