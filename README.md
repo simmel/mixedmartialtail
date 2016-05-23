@@ -9,6 +9,10 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 * Loop through all of the plugins matchers on that line and if it matches:
   * Run the apply method on the line
 * Check if we're supposed to replace the whole line or just the message part.
+#### Plugin
+* 1:N calls: "firstresult"
+* "cat" plugin attributed "trylast"
+* setuptools based entry points.
 
 ### Plugin
 * `match` method which takes a line as input and see if we want to deal with this line.
