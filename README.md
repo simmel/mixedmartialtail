@@ -4,12 +4,15 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 
 ## Design
 ### Main program
-* Load all the plugins and add their "name" to an array.
+* Load all the plugins via
+  [pkg_resources](http://docs.pylonsproject.org/projects/pylons-webframework/en/latest/advanced_pylons/entry_points_and_plugins.html)
+  and add their "name" to an array.
 * Read one line at the time, buffers turned off (I guess?)
 * Loop through all of the plugins matchers on that line and if it matches:
   * Run the apply method on the line
 * Check if we're supposed to replace the whole line or just the message part.
 #### Plugin
+* [Registers an entry point](https://setuptools.readthedocs.io/en/latest/setuptools.html#dynamic-discovery-of-services-and-plugins)
 * 1:N calls: "firstresult"
 * "cat" plugin attributed "trylast"
 * setuptools based entry points.
