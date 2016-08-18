@@ -7,6 +7,9 @@ endif
 build:
 	./setup.py sdist bdist_wheel
 
+develop:
+	./setup.py develop
+
 test:
 	py.test --benchmark-skip
 
