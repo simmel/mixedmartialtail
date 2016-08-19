@@ -22,6 +22,9 @@ setup(
     url="https://github.com/simmel/mixedmartialtail",
     license="ISC license",
     entry_points={
+        'mixedmartialtail.plugins': [
+            'cat = mixedmartialtail.plugins.cat'
+        ],
         'console_scripts': [
             'mmt=mixedmartialtail:main'
         ]
