@@ -29,6 +29,9 @@ setup(
             'mmt=mixedmartialtail:main'
         ]
     },
+    install_requires=[
+        'pluggy==0.3.1'
+    ],
     extras_require={
         'dev': [
             'check-manifest',
