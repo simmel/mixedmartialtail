@@ -1,3 +1,4 @@
 include *.md
+include requirements.txt
 recursive-include mixedmartialtail *.py
 recursive-include tests *.py
