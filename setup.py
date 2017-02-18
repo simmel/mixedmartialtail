@@ -38,6 +38,7 @@ setup(
             'check-manifest',
             'pytest',
             'pytest-benchmark',
+            'tox',
         ],
     },
 )
