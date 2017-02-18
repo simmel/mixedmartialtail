@@ -4,12 +4,10 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 
 ## Design
 ### Main program
-* Load all the plugins via
-  [pkg_resources](http://docs.pylonsproject.org/projects/pylons-webframework/en/latest/advanced_pylons/entry_points_and_plugins.html)
-  and add their "name" to an array.
+* Load all plugins via `PluginManager.load_setuptools_entrypoints`
 * Read one line at the time, buffers turned off (I guess?)
-* Loop through all of the plugins matchers on that line and if it matches:
-  * Run the apply method on the line
+* Use `pm.hook.match(line=line)` to see if that line matches and then:
+  * Run the `pm.hook.apply(line=line)` method
 * Check if we're supposed to replace the whole line or just the message part.
 
 #### Plugin
