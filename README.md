@@ -4,11 +4,11 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 
 ## Design
 ### Main program
-* Load all plugins via `PluginManager.load_setuptools_entrypoints`
-* Read one line at the time, buffers turned off (I guess?)
-* Use `pm.hook.match(line=line)` to see if that line matches and then:
-  * Run the `pm.hook.apply(line=line)` method
-* Check if we're supposed to replace the whole line or just the message part.
+* [X] Load all plugins via `PluginManager.load_setuptools_entrypoints`
+* [X] Read one line at the time, buffers turned off (I guess?)
+* [X] Use `pm.hook.match(line=line)` to see if that line matches and then:
+  * [X] Run the `pm.hook.apply(line=line)` method
+* [ ] Check if we're supposed to replace the whole line or just the message part.
 
 #### Plugin
 * [Registers an entry point](https://setuptools.readthedocs.io/en/latest/setuptools.html#dynamic-discovery-of-services-and-plugins)
