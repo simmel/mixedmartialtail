@@ -8,7 +8,7 @@ build:
 	./setup.py sdist bdist_wheel
 
 develop:
-	./setup.py develop
+	./setup.py develop --user
 
 test:
 	py.test --benchmark-skip
