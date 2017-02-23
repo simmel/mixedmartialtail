@@ -23,7 +23,8 @@ setup(
     license="ISC license",
     entry_points={
         'mixedmartialtail.plugins': [
-            'cat = mixedmartialtail.plugins.cat'
+            'cat = mixedmartialtail.plugins.cat',
+            'json = mixedmartialtail.plugins.json',
         ],
         'console_scripts': [
             'mmt=mixedmartialtail:main'
