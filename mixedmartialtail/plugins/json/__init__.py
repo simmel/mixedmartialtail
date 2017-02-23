@@ -5,8 +5,6 @@ import mixedmartialtail
 import re
 import json
 
-prog = re.compile(r"(.*?)({.*})(.*?)")
-
 @mixedmartialtail.hookimpl()
 def match(line):
     if "{" in line:
@@ -16,8 +14,8 @@ def match(line):
 
 @mixedmartialtail.hookimpl()
 def apply(line):
-    if match(line):
-        apa = prog.match(line)
-        if apa:
-            j = json.loads(apa.group(2))
-            return "{}{}{}".format(apa.group(1), j['message'], apa.group(3))
+    first = line.find("{")
+    last = line.rfind("}")
+    if first != -1 and last != -1:
+        j = json.loads(line[first:last+1])
+        return "{}{}{}".format(line[0:first], j['message'], line[last+1:])
