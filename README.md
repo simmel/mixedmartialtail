@@ -28,7 +28,7 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 
 ## TODO
 * Support JSON
-  * CSS selectors
+  * [JMESPath](https://github.com/jmespath/jmespath.py)
   * JSONPath
 * Offer the option to just the Syslog message part or replace the whole line.
 * Fix bluecoat_convert on these URLs:
