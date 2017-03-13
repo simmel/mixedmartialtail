@@ -4,9 +4,5 @@
 import mixedmartialtail
 
 @mixedmartialtail.hookimpl(trylast=True)
-def match(line):
-    return True
-
-@mixedmartialtail.hookimpl(trylast=True)
 def apply(line):
     return line

@@ -6,13 +6,6 @@ import re
 import json
 
 @mixedmartialtail.hookimpl()
-def match(line):
-    if "{" in line:
-        return True
-    else:
-        return None
-
-@mixedmartialtail.hookimpl()
 def apply(line):
     first = line.find("{")
     last = line.rfind("}")

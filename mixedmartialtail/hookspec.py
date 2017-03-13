@@ -5,15 +5,6 @@ import pluggy
 hookspec = pluggy.HookspecMarker('mixedmartialtail.plugins')
 
 @hookspec(firstresult=True)
-def match(line):
-    """Check if the log line matches the formats we can handle
-
-    :param line: Line to check if it matches our format
-    :type line: String
-    """
-    pass
-
-@hookspec(firstresult=True)
 def apply(line):
     """Apply our format to the line
 

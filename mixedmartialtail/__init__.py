@@ -17,8 +17,9 @@ def main():
 
     input = io.open(sys.stdin.fileno(), 'r', encoding='utf-8', errors='replace')
     for line in input:
-        if pm.hook.match(line=line):
-            sys.stdout.write(pm.hook.apply(line=line))
+        formatted = pm.hook.apply(line=line)
+        if formatted:
+            sys.stdout.write(formatted)
         else:
             raise NotImplementedError("This line cannot be parsed by any plugin:", line)
 
