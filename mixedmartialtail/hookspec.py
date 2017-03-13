@@ -2,7 +2,7 @@
 # vim: set fileencoding=utf-8 sw=4 et tw=79
 import pluggy
 
-hookspec = pluggy.HookspecMarker('mixedmartialtail.plugins')
+hookspec = pluggy.HookspecMarker('mixedmartialtail.input.plugins')
 
 @hookspec(firstresult=True)
 def apply(line):

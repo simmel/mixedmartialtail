@@ -6,14 +6,14 @@ import pluggy
 from . import hookspec
 import importlib
 
-hookimpl = pluggy.HookimplMarker('mixedmartialtail.plugins')
+hookimpl = pluggy.HookimplMarker('mixedmartialtail.input.plugins')
 
 def main():
     from pkg_resources import iter_entry_points
 
-    pm = pluggy.PluginManager('mixedmartialtail.plugins')
+    pm = pluggy.PluginManager('mixedmartialtail.input.plugins')
     pm.add_hookspecs(hookspec)
-    pm.load_setuptools_entrypoints('mixedmartialtail.plugins')
+    pm.load_setuptools_entrypoints('mixedmartialtail.input.plugins')
 
     input = io.open(sys.stdin.fileno(), 'r', encoding='utf-8', errors='replace')
     for line in input:
