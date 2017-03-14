@@ -4,13 +4,10 @@ import sys
 import io
 import pluggy
 from . import hookspec
-import importlib
 
 hookimpl = pluggy.HookimplMarker('mixedmartialtail.input.plugins')
 
 def main():
-    from pkg_resources import iter_entry_points
-
     pm = pluggy.PluginManager('mixedmartialtail.input.plugins')
     pm.add_hookspecs(hookspec)
     pm.load_setuptools_entrypoints('mixedmartialtail.input.plugins')
