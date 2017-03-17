@@ -5,12 +5,12 @@ import io
 import pluggy
 from . import hookspec
 
-hookimpl = pluggy.HookimplMarker('mixedmartialtail.input.plugins')
+hookimpl = pluggy.HookimplMarker('mixedmartialtail.plugins.input')
 
 def main():
-    pm = pluggy.PluginManager('mixedmartialtail.input.plugins')
+    pm = pluggy.PluginManager('mixedmartialtail.plugins.input')
     pm.add_hookspecs(hookspec)
-    pm.load_setuptools_entrypoints('mixedmartialtail.input.plugins')
+    pm.load_setuptools_entrypoints('mixedmartialtail.plugins.input')
 
     input = io.open(sys.stdin.fileno(), 'r', encoding='utf-8', errors='replace')
     for line in input:
