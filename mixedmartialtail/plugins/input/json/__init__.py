@@ -11,4 +11,4 @@ def apply(line):
     last = line.rfind("}")
     if first != -1 and last != -1:
         j = json.loads(line[first:last+1])
-        return "{}{}{}".format(line[0:first], j['message'], line[last+1:])
+        return u"{}{}{}".format(line[0:first], j['message'], line[last+1:])
