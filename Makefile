@@ -4,7 +4,7 @@ else
 	PIP=pip
 endif
 
-build:
+build: mixedmartialtail
 	./setup.py sdist bdist_wheel
 
 develop:
