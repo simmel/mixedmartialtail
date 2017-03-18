@@ -7,6 +7,9 @@ endif
 build: mixedmartialtail
 	./setup.py sdist bdist_wheel
 
+clean:
+	rm -rf build dist .tox
+
 develop:
 	./setup.py develop --user
 
