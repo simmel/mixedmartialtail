@@ -8,7 +8,7 @@ Licensed under the ISC license.
 '''
 
 import sys
-from setuptools import setup
+from setuptools import setup, find_packages
 
 version = "1.0.0"
 
@@ -42,4 +42,5 @@ setup(
             'tox',
         ],
     },
+    packages=find_packages(exclude=['contrib', 'docs', 'tests']),
 )
