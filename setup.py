@@ -39,6 +39,7 @@ setup(
             'check-manifest',
             'pytest',
             'pytest-benchmark',
+            'mock',
             'tox',
         ],
     },
