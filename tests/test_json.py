@@ -5,7 +5,7 @@ import io
 
 def test_cat_deals_with_utf8(capsys):
     with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(u'dat 💩\n')):
-        mixedmartialtail.main()
+        mixedmartialtail.main(argv=[])
     out, err = capsys.readouterr()
     assert out == u"dat 💩\n"
     assert err == ""

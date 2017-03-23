@@ -11,14 +11,14 @@ hookimpl = pluggy.HookimplMarker('mixedmartialtail.plugins.input')
 def get_input():
     return io.open(sys.stdin.fileno(), 'r', encoding='utf-8', errors='replace')
 
-def main():
+def main(argv=sys.argv[1:]):
     pm = pluggy.PluginManager('mixedmartialtail.plugins.input')
     pm.add_hookspecs(hookspec)
     pm.load_setuptools_entrypoints('mixedmartialtail.plugins.input')
 
     parser = argparse.ArgumentParser()
     pm.hook.add_argument(parser=parser)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     for line in get_input():
         formatted = pm.hook.apply(line=line, args=args)
