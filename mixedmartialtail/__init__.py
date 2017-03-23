@@ -21,7 +21,7 @@ def main():
     args = parser.parse_args()
 
     for line in get_input():
-        formatted = pm.hook.apply(line=line)
+        formatted = pm.hook.apply(line=line, args=args)
         if formatted:
             sys.stdout.write(formatted)
         else:
