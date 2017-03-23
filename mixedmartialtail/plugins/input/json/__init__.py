@@ -6,7 +6,7 @@ import re
 import json
 
 @mixedmartialtail.hookimpl()
-def apply(line):
+def apply(line, args):
     first = line.find("{")
     last = line.rfind("}")
     if first != -1 and last != -1:

@@ -4,6 +4,7 @@ import sys
 import io
 import pluggy
 from . import hookspec
+import argparse
 
 hookimpl = pluggy.HookimplMarker('mixedmartialtail.plugins.input')
 
@@ -14,6 +15,10 @@ def main():
     pm = pluggy.PluginManager('mixedmartialtail.plugins.input')
     pm.add_hookspecs(hookspec)
     pm.load_setuptools_entrypoints('mixedmartialtail.plugins.input')
+
+    parser = argparse.ArgumentParser()
+    pm.hook.add_argument(parser=parser)
+    args = parser.parse_args()
 
     for line in get_input():
         formatted = pm.hook.apply(line=line)
