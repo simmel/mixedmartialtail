@@ -18,6 +18,7 @@ ougai = u'''{{"name":"main","hostname":"sarena.waza.se","pid":14607,"level":30,"
 logstash_logger = u'''{{"message":"{message}","@timestamp":"2014-05-22T09:37:19.204-07:00","@version":"1","severity":"INFO","host":"sarena.waza.se"}}'''.format(message=message)
 log_formatter = u'''{{"source":"sarena.waza.se","message":"{message}","log_level":"DEBUG","log_type":"Log4RTest","log_app":"app","log_timestamp":"2016-08-25T17:02:37+08:00"}}'''.format(message=message)
 logrus = u'''{{"animal":"walrus","level":"info","msg":"{message}","size":10,"time":"2014-03-10 19:57:38.562264131 -0400 EDT"}}'''.format(message=message)
+log15 = u'''{{"answer":42,"lvl":0,"msg":"{message}","t":"2015-01-13T23:03:13.341434194+01:00"}}'''.format(message=message)
 
 test_parameters = {
         # https://logging.apache.org/log4j/2.x/manual/layouts.html#JSONLayout
@@ -80,6 +81,12 @@ test_parameters = {
         # 'logrus': (
             # u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logrus),
             # u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(logrus)['msg']),
+        # ),
+        # https://github.com/inconshreveable/log15
+        # FIXME Enable after adding find_message_field
+        # 'log15': (
+            # u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=log15),
+            # u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(log15)['msg']),
         # ),
     }
 
