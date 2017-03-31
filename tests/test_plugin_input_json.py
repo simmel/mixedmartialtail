@@ -16,6 +16,7 @@ json_log_formatter = u'''{{"message":"{message}","time":"2015-09-01T06:06:26.524
 json_logging_py = u'''{{"timestamp":"2015-09-22T22:40:56.178715Z","level":"ERROR","host":"sarena.waza.se","path":"example.py","message":"{message}","logger":"root"}}'''.format(message=message)
 ougai = u'''{{"name":"main","hostname":"sarena.waza.se","pid":14607,"level":30,"time":"2016-10-16T22:26:48.835+09:00","v":0,"msg":"{message}"}}'''.format(message=message)
 logstash_logger = u'''{{"message":"{message}","@timestamp":"2014-05-22T09:37:19.204-07:00","@version":"1","severity":"INFO","host":"sarena.waza.se"}}'''.format(message=message)
+log_formatter = u'''{{"source":"sarena.waza.se","message":"{message}","log_level":"DEBUG","log_type":"Log4RTest","log_app":"app","log_timestamp":"2016-08-25T17:02:37+08:00"}}'''.format(message=message)
 
 test_parameters = {
         # https://logging.apache.org/log4j/2.x/manual/layouts.html#JSONLayout
@@ -67,6 +68,11 @@ test_parameters = {
         'logstash_logger': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logstash_logger),
             u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(logstash_logger)['message']),
+        ),
+        # https://github.com/chadlwm/log_formatter/
+        'log_formatter': (
+            u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=log_formatter),
+            u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(log_formatter)['message']),
         ),
     }
 
