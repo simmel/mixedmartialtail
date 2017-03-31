@@ -12,7 +12,7 @@ def apply(line, args):
     if first != -1 and last != -1:
         j = json.loads(line[first:last+1])
         if should_we_replace_the_line(args, first, last, line):
-            return u"{}{}".format(find_message_field(j), line[last+1:])
+            return u"{}{}{}".format(create_prefix(json), find_message_field(j), line[last+1:])
         else:
             return u"{}{}{}".format(line[0:first], find_message_field(j), line[last+1:])
 
@@ -31,6 +31,15 @@ def find_message_field(log=None):
        return log["msg"]
     else:
        raise NotImplementedError("Can't find message field in:", log)
+
+def create_prefix(json=None):
+    """
+    * Find the datetime
+    * Find prog name
+    * Find any log level
+    * Return it all
+    """
+    return u""
 
 def should_we_replace_the_line(args=None, first=None, last=None, line=None):
     # Replace if either:
