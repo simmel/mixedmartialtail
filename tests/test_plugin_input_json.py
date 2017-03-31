@@ -15,6 +15,7 @@ logstashV1 = u'''{{"@version":1,"filename":"test.py","@timestamp":"2015-03-30T09
 json_log_formatter = u'''{{"message":"{message}","time":"2015-09-01T06:06:26.524448","referral_code":"52d6ce"}}'''.format(message=message)
 json_logging_py = u'''{{"timestamp":"2015-09-22T22:40:56.178715Z","level":"ERROR","host":"sarena.waza.se","path":"example.py","message":"{message}","logger":"root"}}'''.format(message=message)
 ougai = u'''{{"name":"main","hostname":"sarena.waza.se","pid":14607,"level":30,"time":"2016-10-16T22:26:48.835+09:00","v":0,"msg":"{message}"}}'''.format(message=message)
+logstash_logger = u'''{{"message":"{message}","@timestamp":"2014-05-22T09:37:19.204-07:00","@version":"1","severity":"INFO","host":"sarena.waza.se"}}'''.format(message=message)
 
 test_parameters = {
         # https://logging.apache.org/log4j/2.x/manual/layouts.html#JSONLayout
@@ -62,6 +63,11 @@ test_parameters = {
             # u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=ougai),
             # u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(ougai)['msg']),
         # ),
+        # https://github.com/dwbutler/logstash-logger
+        'logstash_logger': (
+            u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logstash_logger),
+            u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(logstash_logger)['message']),
+        ),
     }
 
 @pytest.mark.idparametrize('input,expected', test_parameters)
