@@ -93,3 +93,10 @@ def test_json_uses_correct_message(capsys, input, expected):
     out, err = capsys.readouterr()
     assert out == expected
     assert err == ""
+
+def test_replace_line(capsys):
+    with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(u'''{"timeMillis":1487684052412,"thread":"main","level":"INFO","loggerName":"App","message":"🔣I'm not alone 🆒 I'll wait 'till the end of time for you.㊙️"}\n''')):
+        mixedmartialtail.main(argv=["-i"])
+    out, err = capsys.readouterr()
+    assert out == u'''🔣I'm not alone 🆒 I'll wait 'till the end of time for you.㊙️\n'''
+    assert err == ""
