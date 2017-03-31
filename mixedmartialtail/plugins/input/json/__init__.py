@@ -11,4 +11,10 @@ def apply(line, args):
     last = line.rfind("}")
     if first != -1 and last != -1:
         j = json.loads(line[first:last+1])
-        return u"{}{}{}".format(line[0:first], j['message'], line[last+1:])
+        return u"{}{}{}".format(line[0:first], find_message_field(j), line[last+1:])
+
+def find_message_field(log=None):
+    if "message" in log:
+       return log["message"]
+    else:
+       raise NotImplementedError("Can't find message field in:", log)
