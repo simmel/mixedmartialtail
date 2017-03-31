@@ -60,11 +60,10 @@ test_parameters = {
             u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(json_logging_py)['message']),
         ),
         # https://github.com/tilfin/ougai
-        # FIXME Enable after adding find_message_field
-        # 'ougai': (
-            # u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=ougai),
-            # u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(ougai)['msg']),
-        # ),
+        'ougai': (
+            u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=ougai),
+            u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(ougai)['msg']),
+        ),
         # https://github.com/dwbutler/logstash-logger
         'logstash_logger': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logstash_logger),
@@ -76,17 +75,15 @@ test_parameters = {
             u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(log_formatter)['message']),
         ),
         # https://github.com/sirupsen/logrus
-        # FIXME Enable after adding find_message_field
-        # 'logrus': (
-            # u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logrus),
-            # u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(logrus)['msg']),
-        # ),
+        'logrus': (
+            u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logrus),
+            u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(logrus)['msg']),
+        ),
         # https://github.com/inconshreveable/log15
-        # FIXME Enable after adding find_message_field
-        # 'log15': (
-            # u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=log15),
-            # u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(log15)['msg']),
-        # ),
+        'log15': (
+            u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=log15),
+            u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(log15)['msg']),
+        ),
     }
 
 @pytest.mark.idparametrize('input,expected', test_parameters)

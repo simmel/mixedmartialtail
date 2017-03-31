@@ -18,5 +18,7 @@ def find_message_field(log=None):
        return log["message"]
     elif "@message" in log:
        return log["@message"]
+    elif "msg" in log:
+       return log["msg"]
     else:
        raise NotImplementedError("Can't find message field in:", log)
