@@ -39,11 +39,10 @@ test_parameters = {
         # Logstash V0
         # https://github.com/logstash/logstash-logback-encoder
         # https://github.com/ulule/python-logstash-formatter
-        # FIXME Enable after adding find_message_field
-        # 'logstashV0': (
-            # u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logstashV0),
-            # u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(logstashV0)['@message']),
-        # ),
+        'logstashV0': (
+            u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logstashV0),
+            u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(logstashV0)['@message']),
+        ),
         # Logstash V1
         # https://github.com/ulule/python-logstash-formatter
         'logstashV1': (
