@@ -9,6 +9,7 @@ syslog = u'2005-04-12T17:03:45.000Z sarena.waza.se '
 message = u'''🔣This is a log message🆒, there's no other like it.㊙️'''
 log4j2_json = u'''{{"timeMillis":1487684052412,"thread":"main","level":"INFO","loggerName":"App","message":"{message}","endOfBatch":false,"loggerFqcn":"org.apache.logging.log4j.spi.AbstractLogger","threadId":1,"threadPriority":5}}'''.format(message=message)
 logback_json = u'''{{"timestamp":"2005-04-12 17:03:45.000","level":"ERROR","thread":"Main","logger":"root","message":"{message}"}}'''.format(message=message)
+log4j_jsonevent_layout = u'''{{"class":"org.eclipse.jetty.examples.logging.EchoFormServlet","@version":1,"source_host":"sarena.waza.se","thread_name":"qtp513694835-14","message":"{message}","@timestamp":"2014-01-27T19:52:35.738Z","level":"INFO","file":"EchoFormServlet.java","method":"doPost","logger_name":"org.eclipse.jetty.examples.logging.EchoFormServlet"}}'''.format(message=message)
 
 test_parameters = {
         # https://logging.apache.org/log4j/2.x/manual/layouts.html#JSONLayout
@@ -20,6 +21,11 @@ test_parameters = {
         'logback': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logback_json),
             u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(logback_json)['message']),
+        ),
+        # https://github.com/logstash/log4j-jsonevent-layout
+        'log4j-jsonevent-layout': (
+            u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=log4j_jsonevent_layout),
+            u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(log4j_jsonevent_layout)['message']),
         ),
     }
 
