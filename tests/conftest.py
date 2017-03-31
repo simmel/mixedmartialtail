@@ -16,5 +16,5 @@ def pytest_generate_tests(metafunc):
     idparametrize = getattr(metafunc.function, 'idparametrize', None)
     if idparametrize:
         argnames, testdata = idparametrize.args
-        ids, argvalues = zip(*testdata.items())
+        ids, argvalues = zip(*sorted(testdata.items()))
         metafunc.parametrize(argnames, argvalues, ids=ids)
