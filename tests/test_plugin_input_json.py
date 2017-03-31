@@ -6,7 +6,8 @@ import json
 import pytest
 
 syslog = u'2005-04-12T17:03:45.000Z sarena.waza.se '
-log4j2_json = u'''{"timeMillis":1487684052412,"thread":"main","level":"INFO","loggerName":"App","message":"🔣This is a log message🆒, there's no other like it.㊙️","endOfBatch":false,"loggerFqcn":"org.apache.logging.log4j.spi.AbstractLogger","threadId":1,"threadPriority":5}'''
+message = u'''🔣This is a log message🆒, there's no other like it.㊙️'''
+log4j2_json = u'''{{"timeMillis":1487684052412,"thread":"main","level":"INFO","loggerName":"App","message":"{message}","endOfBatch":false,"loggerFqcn":"org.apache.logging.log4j.spi.AbstractLogger","threadId":1,"threadPriority":5}}'''.format(message=message)
 
 test_parameters = {
         # https://logging.apache.org/log4j/2.x/manual/layouts.html#JSONLayout
