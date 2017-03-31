@@ -12,6 +12,7 @@ logback_json = u'''{{"timestamp":"2005-04-12 17:03:45.000","level":"ERROR","thre
 log4j_jsonevent_layout = u'''{{"class":"org.eclipse.jetty.examples.logging.EchoFormServlet","@version":1,"source_host":"sarena.waza.se","thread_name":"qtp513694835-14","message":"{message}","@timestamp":"2014-01-27T19:52:35.738Z","level":"INFO","file":"EchoFormServlet.java","method":"doPost","logger_name":"org.eclipse.jetty.examples.logging.EchoFormServlet"}}'''.format(message=message)
 logstashV0 = u'''{{"@fields":{{"levelname":"WARNING","name":"root","process":1819,"processName":"MainProcess","threadName":"MainThread"}},"@message":"{message}","@source_host":"sarena.waza.se","@timestamp":"2013-05-02T09:39:48.013158"}}'''.format(message=message)
 logstashV1 = u'''{{"@version":1,"filename":"test.py","@timestamp":"2015-03-30T09:46:23.000Z","threadName":"MainThread","process":10787,"source_host":"sarena.waza.se","processName":"MainProcess","name":"root","levelname":"WARNING","message":"{message}"}}'''.format(message=message)
+json_log_formatter = u'''{{"message":"{message}","time":"2015-09-01T06:06:26.524448","referral_code":"52d6ce"}}'''.format(message=message)
 
 test_parameters = {
         # https://logging.apache.org/log4j/2.x/manual/layouts.html#JSONLayout
@@ -42,6 +43,11 @@ test_parameters = {
         'logstashV1': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logstashV1),
             u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(logstashV1)['message']),
+        ),
+        # https://github.com/marselester/json-log-formatter
+        'json_log_formatter': (
+            u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=json_log_formatter),
+            u'{syslog}{message}\n'.format(syslog=syslog, message=json.loads(json_log_formatter)['message']),
         ),
     }
 
