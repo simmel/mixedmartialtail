@@ -4,6 +4,8 @@
 import mixedmartialtail
 import re
 import json
+from datetime import datetime
+from dateutil import parser, tz
 
 @mixedmartialtail.hookimpl()
 def apply(line, args):
@@ -39,7 +41,7 @@ def create_prefix(log=None):
     * Find any log level
     * Return it all
     """
-    return find_date_field(log)
+    return format_date(find_date_field(log))
 
 def find_date_field(log=None):
     if "timestamp" in log:
@@ -56,6 +58,13 @@ def find_date_field(log=None):
        return log["log_timestamp"]
     else:
        raise NotImplementedError("Can't find date field in:", log)
+
+def format_date(date=None):
+    if type(date) is int:
+        date = datetime.fromtimestamp(date/1000.0).replace(tzinfo=tz.tzlocal())
+    else:
+        date = parser.parse(date, fuzzy=True)
+    return date.strftime("%FT%T.%f%z ")
 
 def should_we_replace_the_line(args=None, first=None, last=None, line=None):
     # Replace if either:
