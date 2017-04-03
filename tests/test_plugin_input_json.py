@@ -95,8 +95,8 @@ def test_json_uses_correct_message(capsys, input, expected):
     assert err == ""
 
 def test_replace_line(capsys):
-    with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(u'''{"timeMillis":1487684052412,"thread":"main","level":"INFO","loggerName":"App","message":"🔣I'm not alone 🆒 I'll wait 'till the end of time for you.㊙️"}\n''')):
+    with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(u'''{"@fields":{"levelname":"WARNING","name":"root","process":1819,"processName":"MainProcess","threadName":"MainThread"},"@message":"🔣I'm not alone 🆒 I'll wait 'till the end of time for you.㊙️","@source_host":"sarena.waza.se","@timestamp":"2013-05-02T09:39:48.013158"}\n''')):
         mixedmartialtail.main(argv=["-i"])
     out, err = capsys.readouterr()
-    assert out == u'''2017-02-21T14:34:12.412000+0100 INFO 🔣I'm not alone 🆒 I'll wait 'till the end of time for you.㊙️\n'''
+    assert out == u'''2013-05-02T09:39:48.013158  🔣I'm not alone 🆒 I'll wait 'till the end of time for you.㊙️\n'''
     assert err == ""
