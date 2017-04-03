@@ -41,7 +41,7 @@ def create_prefix(log=None):
     * Find any log level
     * Return it all
     """
-    return format_date(find_date_field(log))
+    return u'{} {} '.format(format_date(find_date_field(log)), find_level_field(log))
 
 def find_date_field(log=None):
     if "timestamp" in log:
@@ -59,12 +59,26 @@ def find_date_field(log=None):
     else:
        raise NotImplementedError("Can't find date field in:", log)
 
+def find_level_field(log=None):
+    if "level" in log:
+       return log["level"]
+    elif "levelname" in log:
+       return log["levelname"]
+    elif "log_level" in log:
+       return log["log_level"]
+    elif "lvl" in log:
+       return log["lvl"]
+    elif "severity" in log:
+       return log["severity"]
+    else:
+       return u''
+
 def format_date(date=None):
     if type(date) is int:
         date = datetime.fromtimestamp(date/1000.0).replace(tzinfo=tz.tzlocal())
     else:
         date = parser.parse(date, fuzzy=True)
-    return date.strftime("%FT%T.%f%z ")
+    return date.strftime("%FT%T.%f%z")
 
 def should_we_replace_the_line(args=None, first=None, last=None, line=None):
     # Replace if either:
