@@ -42,11 +42,13 @@ def create_prefix(log=None):
     * Return it all
     """
     prog = find_prog_field(log)
+    pid = find_pid_field(log)
     level = find_level_field(log)
     return u'{} {}{}'.format(
             format_date(find_date_field(log)),
-            u'{}{}'.format(
+            u'{}{}{}'.format(
                 prog if prog else u'',
+                u'[{}]'.format(pid) if pid else u'',
                 u': ' if prog else u'',
             ),
             u'{} '.format(level) if level else u'',
@@ -95,6 +97,16 @@ def find_prog_field(log=None):
        return log["@fields"]["name"]
     elif "log_app" in log:
        return log["log_app"]
+    else:
+       pass
+
+def find_pid_field(log=None):
+    if "process" in log:
+       return log["process"]
+    elif "@fields" in log and "process" in log["@fields"]:
+       return log["@fields"]["process"]
+    elif "pid" in log:
+       return log["pid"]
     else:
        pass
 
