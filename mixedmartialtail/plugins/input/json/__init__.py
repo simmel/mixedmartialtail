@@ -41,7 +41,11 @@ def create_prefix(log=None):
     * Find any log level
     * Return it all
     """
-    return u'{} {} '.format(format_date(find_date_field(log)), find_level_field(log))
+    level = find_level_field(log)
+    return u'{} {}'.format(
+            format_date(find_date_field(log)),
+            u'{} '.format(level) if level else u'',
+            )
 
 def find_date_field(log=None):
     if "timestamp" in log:
@@ -73,7 +77,7 @@ def find_level_field(log=None):
     elif "severity" in log:
        return log["severity"]
     else:
-       return u''
+       pass
 
 def format_date(date=None):
     if type(date) is int:
