@@ -41,9 +41,14 @@ def create_prefix(log=None):
     * Find any log level
     * Return it all
     """
+    prog = find_prog_field(log)
     level = find_level_field(log)
-    return u'{} {}'.format(
+    return u'{} {}{}'.format(
             format_date(find_date_field(log)),
+            u'{}{}'.format(
+                prog if prog else u'',
+                u': ' if prog else u'',
+            ),
             u'{} '.format(level) if level else u'',
             )
 
@@ -62,6 +67,36 @@ def find_date_field(log=None):
        return log["log_timestamp"]
     else:
        raise NotImplementedError("Can't find date field in:", log)
+
+def find_prog_field(log=None):
+    """
+    This is messier than usual. So many fields and it all depends on how you
+    configure your logger:
+    * thread
+    * logger
+    * class
+    * file(name)
+    * process(name)
+
+    For now let's go with logger name because that's seems to be consistent
+    over all loggers, so far.
+    """
+    if "loggerName" in log:
+       return log["loggerName"]
+    elif "logger" in log:
+       return log["logger"]
+    elif "logger_name" in log:
+       # These are in a dotted form and we're only interested in the last bit.
+       # E.g: "org.eclipse.jetty.examples.logging.EchoFormServlet"
+       return log["logger_name"].split('.')[-1]
+    elif "name" in log:
+       return log["name"]
+    elif "@fields" in log and "name" in log["@fields"]:
+       return log["@fields"]["name"]
+    elif "log_app" in log:
+       return log["log_app"]
+    else:
+       pass
 
 def find_level_field(log=None):
     if "level" in log:
