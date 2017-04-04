@@ -17,8 +17,8 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 * setuptools based entry points.
 
 ### Plugin
-* `match` method which takes a line as input and see if we want to deal with this line.
 * `apply` method which takes a line and format options as input and transforms the line into a the format we want.
+* `add_argument` method which enables the plugin to add options.
 
 ## Guidelines
 * Have as few options as possible and have sane defaults.
