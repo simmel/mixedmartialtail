@@ -27,9 +27,9 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
   * Don't tail; `tail -F` can do that so much better.
 
 ## TODO
-* Support JSON
-  * [JMESPath](https://github.com/jmespath/jmespath.py)
-  * JSONPath
+* [ ] Add support for selecting fields via [JMESPath](https://github.com/jmespath/jmespath.py)
+  * [ ] Use it ourselves for the default
+  * [ ] Add an option to specify your own JMESPath
 * Offer the option to just the Syslog message part or replace the whole line.
 * Fix bluecoat_convert on these URLs:
   * `/_vti_bin/_vti_aut/fp30reg.dll`
