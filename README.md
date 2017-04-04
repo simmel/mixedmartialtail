@@ -31,12 +31,12 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
   * [ ] Use it ourselves for the default
   * [ ] Add an option to specify your own JMESPath
 * [X] Offer the option to just the Syslog message part or replace the whole line.
-* Fix bluecoat_convert on these URLs:
+* [ ] Fix bluecoat_convert on these URLs:
   * `/_vti_bin/_vti_aut/fp30reg.dll`
   * Support querystrings such as `?client=navclient-auto`
-* Rewrite bluecoat_converter in Logstash instead of Perl
+* [ ] Rewrite bluecoat_converter in Logstash instead of Perl
   * Investigate why the LS version is slower than the Perl one
-* Add [benchmarks](https://pypi.python.org/pypi/pytest-benchmark/) and run them on TravisCI on every commit. Make sure we log in a structured way so we can create a graph of how slow we are.
+* [ ] Add [benchmarks](https://pypi.python.org/pypi/pytest-benchmark/) and run them on TravisCI on every commit. Make sure we log in a structured way so we can create a graph of how slow we are.
   * Add a few log files for the test:
     * One huge
     * 100% Syslog
