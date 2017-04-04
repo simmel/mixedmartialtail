@@ -4,6 +4,7 @@ from mock import patch
 import io
 import json
 import pytest
+import time
 
 syslog = u'2005-04-12T17:03:45.000Z sarena.waza.se '
 message = u'''🔣This is a log message🆒, there's no other like it.㊙️'''
@@ -98,5 +99,5 @@ def test_replace_line(capsys):
     with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(u'''{"@fields":{"levelname":"WARNING","name":"root","process":1819,"processName":"MainProcess","threadName":"MainThread"},"@message":"🔣I'm not alone 🆒 I'll wait 'till the end of time for you.㊙️","@source_host":"sarena.waza.se","@timestamp":"2013-05-02T09:39:48.013158"}\n''')):
         mixedmartialtail.main(argv=["-i"])
     out, err = capsys.readouterr()
-    assert out == u'''2013-05-02T09:39:48.013158 root[1819]: WARNING 🔣I'm not alone 🆒 I'll wait 'till the end of time for you.㊙️\n'''
+    assert out == u'''2013-05-02T09:39:48.013158{} root[1819]: WARNING 🔣I'm not alone 🆒 I'll wait 'till the end of time for you.㊙️\n'''.format(time.strftime("%z"))
     assert err == ""
