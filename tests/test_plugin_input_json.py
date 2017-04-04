@@ -107,7 +107,6 @@ def test_broken_json_and_stops(capsys):
         with pytest.raises(ValueError) as e:
             mixedmartialtail.main(argv=[])
     out, err = capsys.readouterr()
-    assert "Expecting" in str(e.value)
     assert out == ''
     assert err == ''
 
