@@ -128,9 +128,12 @@ def find_level_field(log=None):
 
 def format_date(date=None):
     if type(date) is int:
-        date = datetime.fromtimestamp(date/1000.0).replace(tzinfo=tz.tzlocal())
+        date = datetime.fromtimestamp(date/1000.0)
     else:
         date = parser.parse(date, fuzzy=True)
+    # If there's no TZ in the date, let's use the current one
+    if date.tzinfo is None:
+        date = date.replace(tzinfo=tz.tzlocal())
     return date.strftime("%FT%T.%f%z")
 
 def should_we_replace_the_line(args=None, first=None, last=None, line=None):
