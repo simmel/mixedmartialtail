@@ -115,5 +115,6 @@ def test_broken_json_and_continues(capsys):
     with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(u'{"message":"First working", "timestamp":"2013-05-02T09:39:48.013158"}\n{"@fields":{"@message": "🔣 dat broken"}\n{"message":"Last working", "timestamp":"2013-05-02T09:39:48.013158"}\n')):
         mixedmartialtail.main(argv=['-f'])
     out, err = capsys.readouterr()
-    assert out == u'2013-05-02T09:39:48.013158+0200 First working\n{"@fields":{"@message": "🔣 dat broken"}\n2013-05-02T09:39:48.013158+0200 Last working\n'
+    tz = time.strftime("%z")
+    assert out == u'2013-05-02T09:39:48.013158{} First working\n{{"@fields":{{"@message": "🔣 dat broken"}}\n2013-05-02T09:39:48.013158{} Last working\n'.format(tz, tz)
     assert err == ''

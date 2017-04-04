@@ -34,7 +34,7 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
   * [ ] Add an option to specify your own JMESPath
 * [X] Offer the option to just the Syslog message part or replace the whole line.
 * [ ] Use [tox-travis](https://pypi.python.org/pypi/tox-travis)?
-* [ ] Add option to not replace the TZ when it doesn't exist?
+* [X] Add option to not replace the TZ when it doesn't exist?
 * [ ] Detect and use previously viewed syslog format
 * [ ] Fix bluecoat_convert on these URLs:
   * `/_vti_bin/_vti_aut/fp30reg.dll`
