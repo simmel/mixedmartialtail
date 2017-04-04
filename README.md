@@ -30,7 +30,7 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 * [ ] Add support for selecting fields via [JMESPath](https://github.com/jmespath/jmespath.py)
   * [ ] Use it ourselves for the default
   * [ ] Add an option to specify your own JMESPath
-* Offer the option to just the Syslog message part or replace the whole line.
+* [X] Offer the option to just the Syslog message part or replace the whole line.
 * Fix bluecoat_convert on these URLs:
   * `/_vti_bin/_vti_aut/fp30reg.dll`
   * Support querystrings such as `?client=navclient-auto`
@@ -45,8 +45,8 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
     * 75/25 JSON/Syslog
   * Use [these](http://log-sharing.dreamhosters.com/) as a baseline.
     * Convert the Apache ones to json via Logstash.
-* Disable buffering from the beginning
-  * Enable buffering after a while based on how fast the data is flowing?
+* [X] Disable buffering from the beginning
+  * [ ] Enable buffering after a while based on how fast the data is flowing?
 
 ## Future TODO
 * Support [GELF](http://docs.graylog.org/en/latest/pages/gelf.html)
