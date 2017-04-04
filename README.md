@@ -28,7 +28,7 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 
 ## TODO
 * [ ] Add usage in README
-* [ ] Add option to continue even if JSON is broken. Just return None and cat with deal with it
+* [X] Add option to continue even if JSON is broken.
 * [ ] Add support for selecting fields via [JMESPath](https://github.com/jmespath/jmespath.py)
   * [ ] Use it ourselves for the default
   * [ ] Add an option to specify your own JMESPath

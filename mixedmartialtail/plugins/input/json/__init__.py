@@ -12,7 +12,13 @@ def apply(line, args):
     first = line.find("{")
     last = line.rfind("}")
     if first != -1 and last != -1:
-        j = json.loads(line[first:last+1])
+        try:
+            j = json.loads(line[first:last+1])
+        except ValueError as e:
+            if args.force:
+                return None
+            else:
+                raise e
         if should_we_replace_the_line(args, first, last, line):
             return u"{}{}{}".format(create_prefix(j), find_message_field(j), line[last+1:])
         else:
@@ -23,6 +29,9 @@ def add_argument(parser):
     parser.add_argument("-i", "--replace-line",
             action="store_true",
             help="Force to replace the whole line, not just the part that's JSON.",)
+    parser.add_argument("-f", "--force",
+            action="store_true",
+            help="Force to continue even if the plugins parsers are failing.",)
 
 def find_message_field(log=None):
     if "message" in log:

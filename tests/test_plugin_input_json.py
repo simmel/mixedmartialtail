@@ -101,3 +101,19 @@ def test_replace_line(capsys):
     out, err = capsys.readouterr()
     assert out == u'''2013-05-02T09:39:48.013158{} root[1819]: WARNING 🔣I'm not alone 🆒 I'll wait 'till the end of time for you.㊙️\n'''.format(time.strftime("%z"))
     assert err == ""
+
+def test_broken_json_and_stops(capsys):
+    with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(u'''{"@fields":{"@message": "🔣 dat broken"}''')):
+        with pytest.raises(ValueError) as e:
+            mixedmartialtail.main(argv=[])
+    out, err = capsys.readouterr()
+    assert "Expecting" in str(e.value)
+    assert out == ''
+    assert err == ''
+
+def test_broken_json_and_continues(capsys):
+    with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(u'{"message":"First working", "timestamp":"2013-05-02T09:39:48.013158"}\n{"@fields":{"@message": "🔣 dat broken"}\n{"message":"Last working", "timestamp":"2013-05-02T09:39:48.013158"}\n')):
+        mixedmartialtail.main(argv=['-f'])
+    out, err = capsys.readouterr()
+    assert out == u'2013-05-02T09:39:48.013158+0200 First working\n{"@fields":{"@message": "🔣 dat broken"}\n2013-05-02T09:39:48.013158+0200 Last working\n'
+    assert err == ''
