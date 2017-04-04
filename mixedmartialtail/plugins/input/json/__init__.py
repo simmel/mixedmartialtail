@@ -115,7 +115,7 @@ def find_level_field(log=None):
        return log["level"]
     elif "levelname" in log:
        return log["levelname"]
-    elif "levelname" in log["@fields"]:
+    elif "@fields" in log and "levelname" in log["@fields"]:
        return log["@fields"]["levelname"]
     elif "log_level" in log:
        return log["log_level"]
