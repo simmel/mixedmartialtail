@@ -1,5 +1,6 @@
 # vim: set fileencoding=utf-8 sw=4 et tw=79
 import json
+import time
 
 syslog = u'2005-04-12T17:03:45.000Z sarena.waza.se '
 message = u'''🔣This is a log message🆒, there's no other like it.㊙️'''
@@ -33,16 +34,42 @@ test_parameters = {
         'log4j2': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=log4j2_json_json),
             u'{syslog}{message}\n'.format(syslog=syslog, message=log4j2_json['message']),
+            u'{date} {prog}: {level} {message}\n'.format(
+                date=u'{}{}'.format(
+                    '2017-02-21T14:34:12.412000',
+                    time.strftime('%z'),
+                ),
+                prog=log4j2_json['loggerName'],
+                level=log4j2_json['level'],
+                message=log4j2_json['message'],
+            ),
         ),
         # https://github.com/qos-ch/logback-contrib/wiki/JSON
         'logback': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logback_json_json),
             u'{syslog}{message}\n'.format(syslog=syslog, message=logback_json['message']),
+            u'{date} {prog}: {level} {message}\n'.format(
+                date=u'{}{}'.format(
+                    logback_json['timestamp'],
+                    time.strftime('%z'),
+                ),
+                prog=logback_json['logger'],
+                level=logback_json['level'],
+                message=logback_json['message'],
+            ),
         ),
         # https://github.com/logstash/log4j-jsonevent-layout
         'log4j-jsonevent-layout': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=log4j_jsonevent_layout_json),
             u'{syslog}{message}\n'.format(syslog=syslog, message=log4j_jsonevent_layout['message']),
+            u'{date} {prog}: {level} {message}\n'.format(
+                date=u'{}'.format(
+                    log4j_jsonevent_layout['@timestamp'],
+                ),
+                prog=log4j_jsonevent_layout['logger_name'].split('.')[-1],
+                level=log4j_jsonevent_layout['level'],
+                message=log4j_jsonevent_layout['message'],
+            ),
         ),
         # Logstash V0
         # https://github.com/logstash/logstash-logback-encoder
@@ -50,46 +77,117 @@ test_parameters = {
         'logstashV0': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logstashV0_json),
             u'{syslog}{message}\n'.format(syslog=syslog, message=logstashV0['@message']),
+            u'{date} {prog}[{pid}]: {level} {message}\n'.format(
+                date=u'{}{}'.format(
+                    logstashV0['@timestamp'],
+                    time.strftime('%z'),
+                ),
+                prog=logstashV0['@fields']['name'],
+                pid=logstashV0['@fields']['process'],
+                level=logstashV0['@fields']['levelname'],
+                message=logstashV0['@message'],
+            ),
         ),
         # Logstash V1
         # https://github.com/ulule/python-logstash-formatter
         'logstashV1': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logstashV1_json),
             u'{syslog}{message}\n'.format(syslog=syslog, message=logstashV1['message']),
+            u'{date} {prog}[{pid}]: {level} {message}\n'.format(
+                date=u'{}'.format(
+                    logstashV1['@timestamp'],
+                ),
+                prog=logstashV1['name'],
+                pid=logstashV1['process'],
+                level=logstashV1['levelname'],
+                message=logstashV1['message'],
+            ),
         ),
         # https://github.com/marselester/json-log-formatter
         'json_log_formatter': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=json_log_formatter_json),
             u'{syslog}{message}\n'.format(syslog=syslog, message=json_log_formatter['message']),
+            u'{date} {message}\n'.format(
+                date=u'{}'.format(
+                    json_log_formatter['time'],
+                ),
+                message=json_log_formatter['message'],
+            ),
         ),
         # https://github.com/sebest/json-logging-py
         'json_logging_py': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=json_logging_py_json),
             u'{syslog}{message}\n'.format(syslog=syslog, message=json_logging_py['message']),
+            u'{date} {prog}: {level} {message}\n'.format(
+                date=u'{}'.format(
+                    json_logging_py['timestamp'],
+                ),
+                prog=json_logging_py['logger'],
+                level=json_logging_py['level'],
+                message=json_logging_py['message'],
+            ),
         ),
         # https://github.com/tilfin/ougai
         'ougai': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=ougai_json),
             u'{syslog}{message}\n'.format(syslog=syslog, message=ougai['msg']),
+            u'{date} {prog}[{pid}]: {level} {message}\n'.format(
+                date=u'{}'.format(
+                    ougai['time'],
+                ),
+                prog=ougai['name'],
+                pid=ougai['pid'],
+                level=ougai['level'],
+                message=ougai['msg'],
+            ),
         ),
         # https://github.com/dwbutler/logstash-logger
         'logstash_logger': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logstash_logger_json),
             u'{syslog}{message}\n'.format(syslog=syslog, message=logstash_logger['message']),
+            u'{date} {level} {message}\n'.format(
+                date=u'{}'.format(
+                    logstash_logger['@timestamp'],
+                ),
+                level=logstash_logger['severity'],
+                message=logstash_logger['message'],
+            ),
         ),
         # https://github.com/chadlwm/log_formatter/
         'log_formatter': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=log_formatter_json),
             u'{syslog}{message}\n'.format(syslog=syslog, message=log_formatter['message']),
+            u'{date} {prog}: {level} {message}\n'.format(
+                date=u'{}'.format(
+                    log_formatter['log_timestamp'],
+                ),
+                prog=log_formatter['log_app'],
+                level=log_formatter['log_level'],
+                message=log_formatter['message'],
+            ),
         ),
         # https://github.com/sirupsen/logrus
         'logrus': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=logrus_json),
             u'{syslog}{message}\n'.format(syslog=syslog, message=logrus['msg']),
+            u'{date} {level} {message}\n'.format(
+                date=u'{}'.format(
+                    logrus['time'],
+                ),
+                level=logrus['level'],
+                message=logrus['msg'],
+            ),
         ),
         # https://github.com/inconshreveable/log15
         'log15': (
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=log15_json),
             u'{syslog}{message}\n'.format(syslog=syslog, message=log15['msg']),
+            u'{date} {level} {message}\n'.format(
+                date=u'{}'.format(
+                    log15['t'],
+                ),
+                level=log15['lvl'],
+                message=log15['msg'],
+            ),
         ),
     }

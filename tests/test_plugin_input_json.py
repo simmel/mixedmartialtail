@@ -6,19 +6,20 @@ import pytest
 import time
 from test_variables import *
 
-@pytest.mark.idparametrize('input,expected', test_parameters)
-def test_json_uses_correct_message(capsys, input, expected):
+@pytest.mark.idparametrize('input,expected_syslog,expected_json', test_parameters)
+def test_json_uses_correct_message(capsys, input, expected_syslog, expected_json):
     with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(input)):
         mixedmartialtail.main(argv=[])
     out, err = capsys.readouterr()
-    assert out == expected
+    assert out == expected_syslog
     assert err == ""
 
-def test_replace_line(capsys):
-    with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(u'''{"@fields":{"levelname":"WARNING","name":"root","process":1819,"processName":"MainProcess","threadName":"MainThread"},"@message":"🔣I'm not alone 🆒 I'll wait 'till the end of time for you.㊙️","@source_host":"sarena.waza.se","@timestamp":"2013-05-02T09:39:48.013158"}\n''')):
-        mixedmartialtail.main(argv=["-i"])
+@pytest.mark.idparametrize('input,expected_syslog,expected_json', test_parameters)
+def test_replace_line(capsys, input, expected_syslog, expected_json):
+    with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(input)):
+        mixedmartialtail.main(argv=['-i'])
     out, err = capsys.readouterr()
-    assert out == u'''2013-05-02T09:39:48.013158{} root[1819]: WARNING 🔣I'm not alone 🆒 I'll wait 'till the end of time for you.㊙️\n'''.format(time.strftime("%z"))
+    assert out == expected_json
     assert err == ""
 
 def test_broken_json_and_stops(capsys):
