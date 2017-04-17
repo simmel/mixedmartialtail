@@ -6,7 +6,7 @@ syslog = u'2005-04-12T17:03:45.000Z sarena.waza.se '
 message = u'''🔣This is a log message🆒, there's no other like it.㊙️'''
 log4j2_json_json = u'''{{"timeMillis":1487684052412,"thread":"main","level":"INFO","loggerName":"App","message":"{message}","endOfBatch":false,"loggerFqcn":"org.apache.logging.log4j.spi.AbstractLogger","threadId":1,"threadPriority":5}}'''.format(message=message)
 log4j2_json = json.loads(log4j2_json_json)
-logback_json_json = u'''{{"timestamp":"2005-04-12 17:03:45.000","level":"ERROR","thread":"Main","logger":"root","message":"{message}"}}'''.format(message=message)
+logback_json_json = u'''{{"timestamp":"1492241991831","level":"ERROR","thread":"main","logger":"root","message":"{message}","context":"default"}}'''.format(message=message)
 logback_json = json.loads(logback_json_json)
 log4j_jsonevent_layout_json = u'''{{"class":"org.eclipse.jetty.examples.logging.EchoFormServlet","@version":1,"source_host":"sarena.waza.se","thread_name":"qtp513694835-14","message":"{message}","@timestamp":"2014-01-27T19:52:35.738Z","level":"INFO","file":"EchoFormServlet.java","method":"doPost","logger_name":"org.eclipse.jetty.examples.logging.EchoFormServlet"}}'''.format(message=message)
 log4j_jsonevent_layout = json.loads(log4j_jsonevent_layout_json)
@@ -50,7 +50,7 @@ test_parameters = {
             u'{syslog}{message}\n'.format(syslog=syslog, message=logback_json['message']),
             u'{date} {prog}: {level} {message}\n'.format(
                 date=u'{}{}'.format(
-                    logback_json['timestamp'],
+                    '2017-04-15T09:39:51.831000',
                     time.strftime('%z'),
                 ),
                 prog=logback_json['logger'],

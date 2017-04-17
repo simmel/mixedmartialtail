@@ -138,6 +138,8 @@ def find_level_field(log=None):
 def format_date(date=None):
     if type(date) is int:
         date = datetime.fromtimestamp(date/1000.0)
+    elif date.isdigit():
+        date = datetime.fromtimestamp(int(date)/1000.0)
     else:
         date = parser.parse(date, fuzzy=True)
     # If there's no TZ in the date, let's use the current one
