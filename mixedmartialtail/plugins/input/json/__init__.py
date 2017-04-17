@@ -56,11 +56,11 @@ def create_prefix(log=None):
     return u'{} {}{}'.format(
             format_date(find_date_field(log)),
             u'{}{}{}'.format(
-                prog if prog else u'',
-                u'[{}]'.format(pid) if pid else u'',
-                u': ' if prog else u'',
+                prog if prog is not None else u'',
+                u'[{}]'.format(pid) if pid is not None else u'',
+                u': ' if prog is not None else u'',
             ),
-            u'{} '.format(level) if level else u'',
+            u'{} '.format(level) if level is not None else u'',
             )
 
 def find_date_field(log=None):
