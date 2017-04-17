@@ -28,6 +28,7 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 
 ## TODO
 * [ ] Add usage in README
+* [ ] format_date should use tz of date parsed not current date
 * [X] Add option to continue even if JSON is broken.
 * [ ] Add support for selecting fields via [JMESPath](https://github.com/jmespath/jmespath.py)
   * [ ] Use it ourselves for the default
@@ -35,6 +36,10 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 * [X] Offer the option to just the Syslog message part or replace the whole line.
 * [ ] Add hostname when replacing the whole line
 * [ ] Add log level even when not using -i
+* [ ] When TZ is +0000 use Z instead. Maybe use datetime.isoformat()?
+* [ ] Format milliseconds to 3 digits
+* [ ] format_date on 13 should be 013
+* [ ] Format milliseconds to no zeros if only zeros
 * [ ] Deal with BrokenPipeError and KeyboardInterrupt
 * [ ] Use [tox-travis](https://pypi.python.org/pypi/tox-travis)?
 * [X] Add option to not replace the TZ when it doesn't exist?
