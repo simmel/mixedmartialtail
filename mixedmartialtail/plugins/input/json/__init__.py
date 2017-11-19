@@ -20,9 +20,19 @@ def apply(line, args):
             else:
                 raise e
         if should_we_replace_the_line(args, first, last, line):
-            return u"{}{}{}".format(create_prefix(j), find_message_field(j), line[last+1:])
+            return u"{} {}{}{}".format(
+                format_date(find_date_field(j)),
+                create_prefix(j),
+                find_message_field(j),
+                line[last+1:],
+            )
         else:
-            return u"{}{}{}".format(line[0:first], find_message_field(j), line[last+1:])
+            return u"{}{}{}{}".format(
+                line[0:first],
+                create_prefix(j),
+                find_message_field(j),
+                line[last+1:],
+            )
 
 @mixedmartialtail.hookimpl()
 def add_argument(parser):
@@ -45,7 +55,6 @@ def find_message_field(log=None):
 
 def create_prefix(log=None):
     """
-    * Find the datetime
     * Find prog name
     * Find any log level
     * Return it all
@@ -53,8 +62,7 @@ def create_prefix(log=None):
     prog = find_prog_field(log)
     pid = find_pid_field(log)
     level = find_level_field(log)
-    return u'{} {}{}'.format(
-            format_date(find_date_field(log)),
+    return u'{}{}'.format(
             u'{}{}{}'.format(
                 prog if prog is not None else u'',
                 u'[{}]'.format(pid) if pid is not None else u'',
