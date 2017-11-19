@@ -37,9 +37,9 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 * [ ] Add hostname when replacing the whole line
 * [ ] Fix date and time tests
 * [ ] Add prog name and log level even when not using -i
-* [ ] When TZ is +0000 use Z instead. Maybe use datetime.isoformat()?
-* [ ] Format milliseconds to 3 digits
-* [ ] format_date on 13 should be 013
+* [X] When TZ is +0000 use Z instead. Maybe use datetime.isoformat()?
+* [X] Format milliseconds to 3 digits
+* [X] format_date on 13 should be 013
 * [ ] Format milliseconds to no zeros if only zeros
 * [ ] Deal with BrokenPipeError and KeyboardInterrupt
 * [ ] Use [tox-travis](https://pypi.python.org/pypi/tox-travis)?
