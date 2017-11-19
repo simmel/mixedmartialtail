@@ -3,7 +3,6 @@ import mixedmartialtail
 from mock import patch
 import io
 import pytest
-import time
 from test_variables import *
 
 @pytest.mark.idparametrize('input,expected_syslog,expected_json', test_parameters)
@@ -31,9 +30,9 @@ def test_broken_json_and_stops(capsys):
     assert err == ''
 
 def test_broken_json_and_continues(capsys):
-    with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(u'{"message":"First working", "timestamp":"2013-05-02T09:39:48.013158"}\n{"@fields":{"@message": "🔣 dat broken"}\n{"message":"Last working", "timestamp":"2013-05-02T09:39:48.013158"}\n')):
+    date = '2013-05-02T09:39:48.013+0200'
+    with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(u'{{"message":"First working", "timestamp":"{}"}}\n{{"@fields":{{"@message": "🔣 dat broken"}}\n{{"message":"Last working", "timestamp":"{}"}}\n'.format(date, date))):
         mixedmartialtail.main(argv=['-f'])
     out, err = capsys.readouterr()
-    tz = time.strftime("%z")
-    assert out == u'2013-05-02T09:39:48.013158{} First working\n{{"@fields":{{"@message": "🔣 dat broken"}}\n2013-05-02T09:39:48.013158{} Last working\n'.format(tz, tz)
+    assert out == u'{} First working\n{{"@fields":{{"@message": "🔣 dat broken"}}\n{} Last working\n'.format(date, date)
     assert err == ''
