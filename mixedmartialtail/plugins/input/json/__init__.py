@@ -145,7 +145,10 @@ def format_date(date=None):
     # If there's no TZ in the date, let's use the current one
     if date.tzinfo is None:
         date = date.replace(tzinfo=tz.tzlocal())
-    return u'{}{}{}'.format(date.strftime("%FT%T"), format_ms(date), format_timezone(date))
+    # Avoid strftime for performance reasons
+    iso8601_date = date.isoformat()
+    date_time = iso8601_date[0:iso8601_date.find('.')]
+    return u'{}{}{}'.format(date_time, format_ms(date), format_timezone(iso8601_date))
 
 def format_ms(date):
     # Round µs down to ms
@@ -153,7 +156,9 @@ def format_ms(date):
     return u'.{}'.format(ms) if ms else ''
 
 def format_timezone(date):
-    tz = date.strftime("%z")
+    # Avoid strftime for performance reasons
+    tz = date[date.find('+'):]
+    tz = tz.replace(':', '')
     return "Z" if tz == "+0000" else tz
 
 def should_we_replace_the_line(args=None, first=None, last=None, line=None):
