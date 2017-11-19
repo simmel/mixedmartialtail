@@ -14,6 +14,15 @@ def test_json_uses_correct_message(capsys, input, expected_syslog, expected_json
     assert err == ""
 
 @pytest.mark.idparametrize('input,expected_syslog,expected_json', test_parameters)
+@pytest.mark.skip(reason="FIXME Date and time is complicated")
+def test_replace_line_timestamp(capsys, input, expected_syslog, expected_json):
+    with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(input)):
+        mixedmartialtail.main(argv=['-i'])
+    out, err = capsys.readouterr()
+    assert out.split(' ')[0] == expected_json.split(' ')[0]
+    assert err == ""
+
+@pytest.mark.idparametrize('input,expected_syslog,expected_json', test_parameters)
 def test_replace_line_rest_of_it(capsys, input, expected_syslog, expected_json):
     with patch.object(mixedmartialtail, 'get_input', return_value=io.StringIO(input)):
         mixedmartialtail.main(argv=['-i'])
