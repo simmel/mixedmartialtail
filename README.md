@@ -34,7 +34,7 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
   * [ ] Use it ourselves for the default
   * [ ] Add an option to specify your own JMESPath
 * [X] Offer the option to just the Syslog message part or replace the whole line.
-* [ ] Add hostname when replacing the whole line
+* [X] Add hostname when replacing the whole line
 * [ ] Fix date and time tests
 * [X] Add prog name and log level even when not using -i
 * [X] Use datetime.isoformat() instead of strftime() for speed

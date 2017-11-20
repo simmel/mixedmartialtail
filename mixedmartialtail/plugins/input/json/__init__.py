@@ -20,8 +20,9 @@ def apply(line, args):
             else:
                 raise e
         if should_we_replace_the_line(args, first, last, line):
-            return u"{} {}{}{}".format(
+            return u"{} {}{}{}{}".format(
                 format_date(find_date_field(j)),
+                format_hostname(find_hostname_field(j)),
                 create_prefix(j),
                 find_message_field(j),
                 line[last+1:],
@@ -143,6 +144,18 @@ def find_level_field(log=None):
     else:
        pass
 
+def find_hostname_field(log=None):
+    if "host" in log:
+       return log["host"]
+    elif "source_host" in log:
+       return log["source_host"]
+    elif "@source_host" in log:
+       return log["@source_host"]
+    elif "hostname" in log:
+       return log["hostname"]
+    else:
+       pass
+
 def format_date(date=None):
     if type(date) is int:
         date = datetime.fromtimestamp(date/1000.0)
@@ -168,6 +181,9 @@ def format_timezone(date):
     tz = date[date.find('+'):]
     tz = tz.replace(':', '')
     return "Z" if tz == "+0000" else tz
+
+def format_hostname(hostname):
+    return u'{} '.format(hostname) if hostname is not None else ''
 
 def should_we_replace_the_line(args=None, first=None, last=None, line=None):
     # Replace if either:

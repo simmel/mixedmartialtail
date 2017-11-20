@@ -77,10 +77,11 @@ test_parameters = {
                 level=log4j_jsonevent_layout['level'],
                 message=log4j_jsonevent_layout['message'],
             ),
-            u'{date} {prog}: {level} {message}\n'.format(
+            u'{date} {hostname} {prog}: {level} {message}\n'.format(
                 date=u'{}'.format(
                     log4j_jsonevent_layout['@timestamp'],
                 ),
+                hostname=log4j_jsonevent_layout['source_host'],
                 prog=log4j_jsonevent_layout['logger_name'].split('.')[-1],
                 level=log4j_jsonevent_layout['level'],
                 message=log4j_jsonevent_layout['message'],
@@ -98,11 +99,12 @@ test_parameters = {
                 pid=logstashV0['@fields']['process'],
                 level=logstashV0['@fields']['levelname'],
             ),
-            u'{date} {prog}[{pid}]: {level} {message}\n'.format(
+            u'{date} {hostname} {prog}[{pid}]: {level} {message}\n'.format(
                 date=u'{}{}'.format(
                     logstashV0['@timestamp'],
                     time.strftime('%z'),
                 ),
+                hostname=logstashV0['@source_host'],
                 prog=logstashV0['@fields']['name'],
                 pid=logstashV0['@fields']['process'],
                 level=logstashV0['@fields']['levelname'],
@@ -120,10 +122,11 @@ test_parameters = {
                 level=logstashV1['levelname'],
                 message=logstashV1['message'],
             ),
-            u'{date} {prog}[{pid}]: {level} {message}\n'.format(
+            u'{date} {hostname} {prog}[{pid}]: {level} {message}\n'.format(
                 date=u'{}'.format(
                     logstashV1['@timestamp'],
                 ),
+                hostname=logstashV1['source_host'],
                 prog=logstashV1['name'],
                 pid=logstashV1['process'],
                 level=logstashV1['levelname'],
@@ -150,10 +153,11 @@ test_parameters = {
                 level=json_logging_py['level'],
                 message=json_logging_py['message'],
             ),
-            u'{date} {prog}: {level} {message}\n'.format(
+            u'{date} {hostname} {prog}: {level} {message}\n'.format(
                 date=u'{}'.format(
                     json_logging_py['timestamp'],
                 ),
+                hostname=json_logging_py['host'],
                 prog=json_logging_py['logger'],
                 level=json_logging_py['level'],
                 message=json_logging_py['message'],
@@ -169,10 +173,11 @@ test_parameters = {
                 level=ougai['level'],
                 message=ougai['msg'],
             ),
-            u'{date} {prog}[{pid}]: {level} {message}\n'.format(
+            u'{date} {hostname} {prog}[{pid}]: {level} {message}\n'.format(
                 date=u'{}'.format(
                     ougai['time'],
                 ),
+                hostname=ougai['hostname'],
                 prog=ougai['name'],
                 pid=ougai['pid'],
                 level=ougai['level'],
@@ -187,10 +192,11 @@ test_parameters = {
                 level=logstash_logger['severity'],
                 message=logstash_logger['message'],
             ),
-            u'{date} {level} {message}\n'.format(
+            u'{date} {hostname} {level} {message}\n'.format(
                 date=u'{}'.format(
                     logstash_logger['@timestamp'],
                 ),
+                hostname=logstash_logger['host'],
                 level=logstash_logger['severity'],
                 message=logstash_logger['message'],
             ),
