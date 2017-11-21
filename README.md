@@ -28,11 +28,7 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 
 ## TODO
 * [ ] Add usage in README
-* [ ] format_date should use tz of date parsed not current date
 * [X] Add option to continue even if JSON is broken.
-* [ ] Add support for selecting fields via [JMESPath](https://github.com/jmespath/jmespath.py)
-  * [ ] Use it ourselves for the default
-  * [ ] Add an option to specify your own JMESPath
 * [X] Offer the option to just the Syslog message part or replace the whole line.
 * [X] Add hostname when replacing the whole line
 * [ ] Fix date and time tests
@@ -44,12 +40,17 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 * [X] Deal with BrokenPipeError and KeyboardInterrupt
 * [ ] Use [tox-travis](https://pypi.python.org/pypi/tox-travis)?
 * [X] Add option to not replace the TZ when it doesn't exist?
-* [ ] Detect and use previously viewed syslog format
 * [ ] Fix bluecoat_convert on these URLs:
   * `/_vti_bin/_vti_aut/fp30reg.dll`
   * Support querystrings such as `?client=navclient-auto`
 * [ ] Rewrite bluecoat_converter in Logstash instead of Perl
   * Investigate why the LS version is slower than the Perl one
+## TODO After benchmarks added
+* [ ] format_date should use tz of date parsed not current date
+* [ ] Add support for selecting fields via [JMESPath](https://github.com/jmespath/jmespath.py)
+  * [ ] Use it ourselves for the default
+  * [ ] Add an option to specify your own JMESPath
+  * [ ] Detect and use previously viewed syslog format
 * [ ] Add [benchmarks](https://pypi.python.org/pypi/pytest-benchmark/) and run them on TravisCI on every commit. Make sure we log in a structured way so we can create a graph of how slow we are.
   * Add a few log files for the test:
     * One huge
