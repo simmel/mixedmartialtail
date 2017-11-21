@@ -40,6 +40,7 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 * [X] Deal with BrokenPipeError and KeyboardInterrupt
 * [ ] Use [tox-travis](https://pypi.python.org/pypi/tox-travis)?
 * [X] Add option to not replace the TZ when it doesn't exist?
+* [ ] Release on PyPI
 * [ ] Fix bluecoat_convert on these URLs:
   * `/_vti_bin/_vti_aut/fp30reg.dll`
   * Support querystrings such as `?client=navclient-auto`
