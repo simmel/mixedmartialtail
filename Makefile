@@ -14,7 +14,7 @@ develop:
 	./setup.py develop --user
 
 test:
-	py.test --benchmark-skip
+	tox
 
 benchmark:
 	py.test --benchmark-only --benchmark-autosave --benchmark-warmup

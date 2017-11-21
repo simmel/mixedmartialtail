@@ -54,7 +54,7 @@ $ tail -F /var/log/messages | mmt | ccze -A
 * [X] Format milliseconds to 3 digits
 * [X] format_date on 13 should be 013
 * [X] Deal with BrokenPipeError and KeyboardInterrupt
-* [ ] Use [tox-travis](https://pypi.python.org/pypi/tox-travis)?
+* [X] Use [tox-travis](https://pypi.python.org/pypi/tox-travis)?
 * [X] Add option to not replace the TZ when it doesn't exist?
 * [ ] Release on PyPI
 * [ ] Fix bluecoat_convert on these URLs:
