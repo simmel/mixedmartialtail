@@ -30,6 +30,7 @@ def main(argv=sys.argv[1:]):
             formatted = pm.hook.apply(line=line, args=args)
             if formatted:
                 sys.stdout.write(formatted)
+                sys.stdout.flush()
             else:
                 raise NotImplementedError("This line cannot be parsed by any plugin:", line)
     except (KeyboardInterrupt):
