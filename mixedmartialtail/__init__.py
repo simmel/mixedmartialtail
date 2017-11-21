@@ -5,6 +5,11 @@ import io
 import pluggy
 from . import hookspec
 import argparse
+from signal import signal, SIGPIPE, SIG_DFL
+
+# Use the default handler for SIGPIPE since the Python default to ignore it
+# using SIG_IGN doesn't seem make it catchable via BrokenPipeError
+signal(SIGPIPE,SIG_DFL)
 
 hookimpl = pluggy.HookimplMarker('mixedmartialtail.plugins.input')
 

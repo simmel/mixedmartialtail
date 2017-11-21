@@ -41,7 +41,7 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
 * [X] When TZ is +0000 use Z instead. Maybe use datetime.isoformat()?
 * [X] Format milliseconds to 3 digits
 * [X] format_date on 13 should be 013
-* [ ] Deal with BrokenPipeError and KeyboardInterrupt
+* [X] Deal with BrokenPipeError and KeyboardInterrupt
 * [ ] Use [tox-travis](https://pypi.python.org/pypi/tox-travis)?
 * [X] Add option to not replace the TZ when it doesn't exist?
 * [ ] Detect and use previously viewed syslog format
