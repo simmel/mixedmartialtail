@@ -2,6 +2,22 @@
 
 mmt is a warlike and bruteforce approach to tailing logs with mixed formats in them.
 
+## Installation
+
+```
+# Until it's up on PyPI:
+$ git clone https://github.com/simmel/mixedmartialtail
+$ pip install .
+```
+
+## Usage
+
+```
+$ tail -F /var/log/messages | mmt
+# You can even pipe it further to less(1) or even ccze(1) or colortail(1)
+$ tail -F /var/log/messages | mmt | ccze -A
+```
+
 ## Design
 ### Main program
 * [X] Load all plugins via `PluginManager.load_setuptools_entrypoints`
@@ -27,7 +43,7 @@ mmt is a warlike and bruteforce approach to tailing logs with mixed formats in t
   * Don't tail; `tail -F` can do that so much better.
 
 ## TODO
-* [ ] Add usage in README
+* [X] Add usage in README
 * [X] Add option to continue even if JSON is broken.
 * [X] Offer the option to just the Syslog message part or replace the whole line.
 * [X] Add hostname when replacing the whole line
