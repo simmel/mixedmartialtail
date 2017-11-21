@@ -20,12 +20,15 @@ def main(argv=sys.argv[1:]):
     pm.hook.add_argument(parser=parser)
     args = parser.parse_args(argv)
 
-    for line in get_input():
-        formatted = pm.hook.apply(line=line, args=args)
-        if formatted:
-            sys.stdout.write(formatted)
-        else:
-            raise NotImplementedError("This line cannot be parsed by any plugin:", line)
+    try:
+        for line in get_input():
+            formatted = pm.hook.apply(line=line, args=args)
+            if formatted:
+                sys.stdout.write(formatted)
+            else:
+                raise NotImplementedError("This line cannot be parsed by any plugin:", line)
+    except (KeyboardInterrupt):
+        pass
 
 if __name__ == "__main__":
     main()
