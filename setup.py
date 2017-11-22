@@ -33,14 +33,14 @@ setup(
     install_requires=open('requirements.txt').readlines(),
     extras_require={
         'dev': [
-            'check-manifest',
+            'check-manifest==0.35',
         ],
         'test': [
-            'check-manifest',
-            'pytest',
-            'pytest-benchmark',
-            'mock',
-            'tox',
+            'check-manifest==0.35',
+            'pytest==3.0.7',
+            'pytest-benchmark==3.0.0',
+            'mock==2.0.0',
+            'tox==2.6.0',
         ],
     },
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
