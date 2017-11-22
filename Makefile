@@ -11,6 +11,7 @@ clean:
 	rm -rf build dist .tox
 
 develop:
+	$(PIP) install -e '.[dev]'
 	./setup.py develop --user
 
 test:
