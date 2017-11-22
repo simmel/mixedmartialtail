@@ -2,6 +2,13 @@
 
 mmt is a warlike and bruteforce approach to tailing logs with mixed formats in them.
 
+Having structured logs in e.g. JSON is nice and makes it easy (and fast!) to
+parse and index them. However this also means that logs aren't that easy to
+read on the machine which creates the logs (hello Java stacktraces!).
+
+mixedmartialtail is the answer to this problem and makes it easy to read logs
+with tail even if they are structured!
+
 ## Installation
 
 ```
