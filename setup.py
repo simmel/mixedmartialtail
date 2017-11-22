@@ -34,6 +34,7 @@ setup(
     extras_require={
         'dev': [
             'check-manifest==0.35',
+            'twine==1.9.1',
         ],
         'test': [
             'check-manifest==0.35',

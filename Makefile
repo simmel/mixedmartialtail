@@ -14,6 +14,12 @@ develop:
 	$(PIP) install -e '.[dev]'
 	./setup.py develop --user
 
+release: VERSION = $(shell ./setup.py --version)
+release: build
+	git tag -s -m $(VERSION) $(VERSION)
+	git push --tags
+	twine --sign upload dist/*
+
 test:
 	tox
 
