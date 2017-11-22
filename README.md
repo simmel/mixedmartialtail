@@ -56,6 +56,7 @@ $ tail -F /var/log/messages | mmt | ccze -A
 * [X] Deal with BrokenPipeError and KeyboardInterrupt
 * [X] Use [tox-travis](https://pypi.python.org/pypi/tox-travis)?
 * [X] Add option to not replace the TZ when it doesn't exist?
+* [ ] Figure out how to use tox to run benchmarks on all Python versions
 * [ ] Release on PyPI
 * [ ] Fix bluecoat_convert on these URLs:
   * `/_vti_bin/_vti_aut/fp30reg.dll`
