@@ -88,6 +88,9 @@ $ tail -F /var/log/messages | mmt | ccze -A
     * Convert the Apache ones to json via Logstash.
 * [X] Disable buffering from the beginning
   * [ ] Enable buffering after a while based on how fast the data is flowing?
+* [ ] Do the JSON parsing faster
+  * [ ] insert them into a FIFO queue
+  * [ ] and use a thread worker pool on that queue
 * [ ] Fix bluecoat_convert on these URLs:
   * `/_vti_bin/_vti_aut/fp30reg.dll`
   * Support querystrings such as `?client=navclient-auto`
