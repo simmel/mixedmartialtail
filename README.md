@@ -56,6 +56,7 @@ $ tail -F /var/log/messages | mmt | ccze -A
 * [X] Add hostname when replacing the whole line
 * [ ] Add example code for every supported log lib
 * [ ] Fix date and time tests
+  * [X] Wrong TZ because of DST and we're using `time.strftime('%z')`
   * [ ] In json_log_formatter there's no TZ so:
     * [ ] ms doesn't get rounded down to 3 neither does json_logging_py
     * [ ] no TZ gets added

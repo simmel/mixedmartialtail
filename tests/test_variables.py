@@ -1,6 +1,7 @@
 # vim: set fileencoding=utf-8 sw=4 et tw=79
 import json
 import time
+from dateutil import parser, tz
 
 syslog = u'2005-04-12T17:03:45.000Z sarena.waza.se '
 message = u'''🔣This is a log message🆒, there's no other like it.㊙️'''
@@ -40,10 +41,11 @@ test_parameters = {
                 message=log4j2_json['message'],
             ),
             u'{date} {prog}: {level} {message}\n'.format(
-                date=u'{}{}'.format(
-                    '2017-02-21T14:34:12.412000',
-                    time.strftime('%z'),
-                ),
+                date=parser.parse(
+                    '2017-02-21T14:34:12.412000'
+                ).replace(
+                    tzinfo=tz.tzlocal()
+                ).isoformat(),
                 prog=log4j2_json['loggerName'],
                 level=log4j2_json['level'],
                 message=log4j2_json['message'],
@@ -59,10 +61,11 @@ test_parameters = {
                 message=logback_json['message'],
             ),
             u'{date} {prog}: {level} {message}\n'.format(
-                date=u'{}{}'.format(
-                    '2017-04-15T09:39:51.831000',
-                    time.strftime('%z'),
-                ),
+                date=parser.parse(
+                    '2017-04-15T09:39:51.831000'
+                ).replace(
+                    tzinfo=tz.tzlocal()
+                ).isoformat(),
                 prog=logback_json['logger'],
                 level=logback_json['level'],
                 message=logback_json['message'],
@@ -100,10 +103,11 @@ test_parameters = {
                 level=logstashV0['@fields']['levelname'],
             ),
             u'{date} {hostname} {prog}[{pid}]: {level} {message}\n'.format(
-                date=u'{}{}'.format(
-                    logstashV0['@timestamp'],
-                    time.strftime('%z'),
-                ),
+                date=parser.parse(
+                    logstashV0['@timestamp']
+                ).replace(
+                    tzinfo=tz.tzlocal()
+                ).isoformat(),
                 hostname=logstashV0['@source_host'],
                 prog=logstashV0['@fields']['name'],
                 pid=logstashV0['@fields']['process'],
