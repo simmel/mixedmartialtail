@@ -61,6 +61,7 @@ $ tail -F /var/log/messages | mmt | ccze -A
   * [ ] log_formatter logrus logstashV1 gets crazy  TZ and ms round down
   * [ ] logback logstashV0 gets wrong TZ and no round down
   * [ ] Colon or no colon. Can the test ignore if the colon is there or not?
+  * [ ] Negative timezone doesn't work
 * [X] Add prog name and log level even when not using -i
 * [X] Use datetime.isoformat() instead of strftime() for speed
 * [X] When TZ is +0000 use Z instead. Maybe use datetime.isoformat()?
