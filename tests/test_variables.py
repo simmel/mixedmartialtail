@@ -142,9 +142,11 @@ test_parameters = {
             u'{syslog}{json_log}\n'.format(syslog=syslog, json_log=json_log_formatter_json),
             u'{syslog}{message}\n'.format(syslog=syslog, message=json_log_formatter['message']),
             u'{date} {message}\n'.format(
-                date=u'{}'.format(
-                    json_log_formatter['time'],
-                ),
+                date=parser.parse(
+                    json_log_formatter['time']
+                ).replace(
+                    tzinfo=tz.tzlocal()
+                ).isoformat(),
                 message=json_log_formatter['message'],
             ),
         ),

@@ -57,7 +57,7 @@ $ tail -F /var/log/messages | mmt | ccze -A
 * [ ] Add example code for every supported log lib
 * [ ] Fix date and time tests
   * [X] Wrong TZ because of DST and we're using `time.strftime('%z')`
-  * [ ] In json_log_formatter there's no TZ
+  * [X] In json_log_formatter there's no TZ
   * [ ] log_formatter logrus logstashV1 gets crazy
   * [ ] ms is rounded up, should it?
   * [ ] Colon or no colon. Can the test ignore if the colon is there or not?
