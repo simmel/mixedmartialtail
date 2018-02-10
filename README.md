@@ -73,7 +73,7 @@ $ tail -F /var/log/messages | mmt | ccze -A
 * [ ] Release 1.0.0 on PyPI
 ## TODO After benchmarks added
 * [ ] Add example code for every supported log lib
-* [ ] format_date should use tz of date parsed not current date
+* [X] format_date should use tz of date parsed not current date
 * [ ] Add support for selecting fields via [JMESPath](https://github.com/jmespath/jmespath.py)
   * [ ] Use it ourselves for the default
   * [ ] Add an option to specify your own JMESPath
