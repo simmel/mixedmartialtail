@@ -168,7 +168,10 @@ def format_date(date=None):
         date = date.replace(tzinfo=tz.tzlocal())
     # Avoid strftime for performance reasons
     iso8601_date = date.isoformat()
-    date_time = iso8601_date[0:iso8601_date.find('.')]
+    ms_start = iso8601_date.find('.')
+    if ms_start == -1:
+        ms_start = find_tz_start(iso8601_date)
+    date_time = iso8601_date[0:ms_start]
     return u'{}{}{}'.format(date_time, format_ms(date), format_timezone(iso8601_date))
 
 def format_ms(date):
@@ -176,11 +179,15 @@ def format_ms(date):
     ms = '{:03.0f}'.format(date.time().microsecond/1000.0)
     return u'.{}'.format(ms) if ms else ''
 
-def format_timezone(date):
-    # Avoid strftime for performance reasons
+def find_tz_start(date):
     start = date.find('+')
     if start == -1:
         start = date.rfind('-')
+    return start
+
+def format_timezone(date):
+    # Avoid strftime for performance reasons
+    start = find_tz_start(date)
     tz = date[start:]
     tz = tz.replace(':', '')
     return "Z" if tz == "+0000" else tz
