@@ -178,7 +178,10 @@ def format_ms(date):
 
 def format_timezone(date):
     # Avoid strftime for performance reasons
-    tz = date[date.find('+'):]
+    start = date.find('+')
+    if start == -1:
+        start = date.rfind('-')
+    tz = date[start:]
     tz = tz.replace(':', '')
     return "Z" if tz == "+0000" else tz
 
