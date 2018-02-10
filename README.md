@@ -54,7 +54,6 @@ $ tail -F /var/log/messages | mmt | ccze -A
 * [X] Add option to continue even if JSON is broken.
 * [X] Offer the option to just the Syslog message part or replace the whole line.
 * [X] Add hostname when replacing the whole line
-* [ ] Add example code for every supported log lib
 * [ ] Fix date and time tests
   * [X] Wrong TZ because of DST and we're using `time.strftime('%z')`
   * [X] In json_log_formatter there's no TZ
@@ -73,6 +72,7 @@ $ tail -F /var/log/messages | mmt | ccze -A
 * [ ] Figure out how to use tox to run benchmarks on all Python versions
 * [ ] Release 1.0.0 on PyPI
 ## TODO After benchmarks added
+* [ ] Add example code for every supported log lib
 * [ ] format_date should use tz of date parsed not current date
 * [ ] Add support for selecting fields via [JMESPath](https://github.com/jmespath/jmespath.py)
   * [ ] Use it ourselves for the default
