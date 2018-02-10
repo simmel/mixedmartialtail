@@ -71,11 +71,6 @@ $ tail -F /var/log/messages | mmt | ccze -A
 * [X] Add option to not replace the TZ when it doesn't exist?
 * [ ] Figure out how to use tox to run benchmarks on all Python versions
 * [ ] Release on PyPI
-* [ ] Fix bluecoat_convert on these URLs:
-  * `/_vti_bin/_vti_aut/fp30reg.dll`
-  * Support querystrings such as `?client=navclient-auto`
-* [ ] Rewrite bluecoat_converter in Logstash instead of Perl
-  * Investigate why the LS version is slower than the Perl one
 ## TODO After benchmarks added
 * [ ] format_date should use tz of date parsed not current date
 * [ ] Add support for selecting fields via [JMESPath](https://github.com/jmespath/jmespath.py)
@@ -93,6 +88,11 @@ $ tail -F /var/log/messages | mmt | ccze -A
     * Convert the Apache ones to json via Logstash.
 * [X] Disable buffering from the beginning
   * [ ] Enable buffering after a while based on how fast the data is flowing?
+* [ ] Fix bluecoat_convert on these URLs:
+  * `/_vti_bin/_vti_aut/fp30reg.dll`
+  * Support querystrings such as `?client=navclient-auto`
+* [ ] Rewrite bluecoat_converter in Logstash instead of Perl
+  * Investigate why the LS version is slower than the Perl one
 
 ## Future TODO
 * Support [GELF](http://docs.graylog.org/en/latest/pages/gelf.html)
