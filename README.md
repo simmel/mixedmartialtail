@@ -69,9 +69,9 @@ $ tail -F /var/log/messages | mmt | ccze -A
 * [X] Deal with BrokenPipeError and KeyboardInterrupt
 * [X] Use [tox-travis](https://pypi.python.org/pypi/tox-travis)?
 * [X] Add option to not replace the TZ when it doesn't exist?
-* [ ] Figure out how to use tox to run benchmarks on all Python versions
 * [ ] Release 1.0.0 on PyPI
 ## TODO After benchmarks added
+* [ ] Figure out how to use tox to run benchmarks on all Python versions
 * [ ] Add example code for every supported log lib
 * [X] format_date should use tz of date parsed not current date
 * [ ] Add support for selecting fields via [JMESPath](https://github.com/jmespath/jmespath.py)
