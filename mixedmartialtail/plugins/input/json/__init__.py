@@ -11,7 +11,8 @@ from dateutil import parser, tz
 def apply(line, args):
     first = line.find("{")
     last = line.rfind("}")
-    if first != -1 and last != -1:
+    # Do the bare minimum to figure out if it's JSON http://json.org/
+    if first != -1 and last != -1 and (line[first+1] is "" or line[first+1] is '"'):
         try:
             j = json.loads(line[first:last+1])
         except ValueError as e:
