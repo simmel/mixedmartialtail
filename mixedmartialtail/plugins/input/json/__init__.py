@@ -38,7 +38,7 @@ def is_json(line):
     first = line.find("{")
     last = line.rfind("}")
     # Do the bare minimum to figure out if it's JSON http://json.org/
-    if first != -1 and last != -1 and (line[first+1] is " " or line[first+1] is '"'):
+    if first != -1 and last != -1 and (line[first+1] == " " or line[first+1] == '"'):
         return (True, first, last)
     else:
         return (False, first, last)
