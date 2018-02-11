@@ -1,5 +1,6 @@
 # vim: set fileencoding=utf-8 sw=4 et tw=79
 import mixedmartialtail
+import mixedmartialtail.plugins.input.json
 from mock import patch
 import io
 import pytest
@@ -45,3 +46,13 @@ def test_broken_json_and_continues(capsys):
     out, err = capsys.readouterr()
     assert out == u'{} First working\n{{"@fields":{{"@message": "🔣 dat broken"}}\n{} Last working\n'.format(date, date)
     assert err == ''
+
+@pytest.mark.parametrize("json,expected", [
+    ('GET /31/[5P+O[UPND2E9ZY@Z6H@{}.jpg', False),
+    ('GET /images/dynamiskt/bildspecial//9529388/thumbs/{A206C463-B28D-4316-815D-E980B1781179}_thumb.jpg', False),
+    ('GET /cgi-bin/SelectorV2?json={"meow": 1}', True),
+    ('GET /HG?json={ "woo": null}', True),
+])
+def test_is_json(json,expected):
+    is_it, first, last = mixedmartialtail.plugins.input.json.is_json(json)
+    assert is_it == expected

@@ -9,10 +9,8 @@ from dateutil import parser, tz
 
 @mixedmartialtail.hookimpl()
 def apply(line, args):
-    first = line.find("{")
-    last = line.rfind("}")
-    # Do the bare minimum to figure out if it's JSON http://json.org/
-    if first != -1 and last != -1 and (line[first+1] is "" or line[first+1] is '"'):
+    its_json, first, last = is_json(line)
+    if its_json:
         try:
             j = json.loads(line[first:last+1])
         except ValueError as e:
@@ -35,6 +33,15 @@ def apply(line, args):
                 find_message_field(j),
                 line[last+1:],
             )
+
+def is_json(line):
+    first = line.find("{")
+    last = line.rfind("}")
+    # Do the bare minimum to figure out if it's JSON http://json.org/
+    if first != -1 and last != -1 and (line[first+1] is " " or line[first+1] is '"'):
+        return (True, first, last)
+    else:
+        return (False, first, last)
 
 @mixedmartialtail.hookimpl()
 def add_argument(parser):
