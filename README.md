@@ -69,6 +69,15 @@ $ tail -F /var/log/messages | mmt | ccze -A
 * [X] Deal with BrokenPipeError and KeyboardInterrupt
 * [X] Use [tox-travis](https://pypi.python.org/pypi/tox-travis)?
 * [X] Add option to not replace the TZ when it doesn't exist?
+* [ ] Add [benchmarks](https://pypi.python.org/pypi/pytest-benchmark/) and run them on TravisCI on every commit. Make sure we log in a structured way so we can create a graph of how slow we are.
+  * [ ] Add a few log files for the test:
+    * [ ] One huge
+    * [ ] 100% Syslog
+    * [ ] 75/25 Syslog/JSON
+    * [ ] 50/50 Syslog and JSON
+    * [ ] 75/25 JSON/Syslog
+  * [ ] Use [these](http://log-sharing.dreamhosters.com/) as a baseline.
+    * [ ] Convert the Apache ones to json via Logstash.
 * [ ] Release 1.0.0 on PyPI
 ## TODO After benchmarks added
 * [ ] Figure out how to use tox to run benchmarks on all Python versions
@@ -78,15 +87,6 @@ $ tail -F /var/log/messages | mmt | ccze -A
   * [ ] Use it ourselves for the default
   * [ ] Add an option to specify your own JMESPath
   * [ ] Detect and use previously viewed syslog format
-* [ ] Add [benchmarks](https://pypi.python.org/pypi/pytest-benchmark/) and run them on TravisCI on every commit. Make sure we log in a structured way so we can create a graph of how slow we are.
-  * Add a few log files for the test:
-    * One huge
-    * 100% Syslog
-    * 75/25 Syslog/JSON
-    * 50/50 Syslog and JSON
-    * 75/25 JSON/Syslog
-  * Use [these](http://log-sharing.dreamhosters.com/) as a baseline.
-    * Convert the Apache ones to json via Logstash.
 * [X] Disable buffering from the beginning
   * [ ] Enable buffering after a while based on how fast the data is flowing?
 * [ ] Do the JSON parsing faster
