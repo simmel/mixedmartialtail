@@ -15,7 +15,9 @@ while (<>) {
     $date = strftime("%d/%b/%Y:%T %z", gmtime($date));
     my $ua = $+{useragent};
     $ua = "\"$ua\"" if ($ua eq '-');
-    print "$+{ip} - - [$date] \"$+{http_method} $+{url} HTTP/1.0\" $+{http_status} $+{bytes} \"-\" $ua\n";
+    my $querystring = $+{querystring};
+    $querystring = "" if ($querystring eq '-');
+    print "$+{ip} - - [$date] \"$+{http_method} $+{url}$querystring HTTP/1.0\" $+{http_status} $+{bytes} \"-\" $ua\n";
   }
   elsif (/^#/) {}
   else {
