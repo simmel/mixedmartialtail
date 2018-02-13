@@ -13,7 +13,9 @@ while (<>) {
 #    print Dumper \%+;
     my $date = str2time("$+{date} $+{time}");
     $date = strftime("%d/%b/%Y:%T %z", gmtime($date));
-    print "$+{ip} - - [$date] \"$+{http_method} $+{url} HTTP/1.0\" $+{http_status} $+{bytes} \"-\" $+{useragent}\n";
+    my $ua = $+{useragent};
+    $ua = "\"$ua\"" if ($ua eq '-');
+    print "$+{ip} - - [$date] \"$+{http_method} $+{url} HTTP/1.0\" $+{http_status} $+{bytes} \"-\" $ua\n";
   }
   elsif (/^#/) {}
   else {
