@@ -55,6 +55,7 @@ $ tail -F /var/log/messages | mmt | ccze -A
 * [X] Offer the option to just the Syslog message part or replace the whole line.
 * [X] Add hostname when replacing the whole line
 * [ ] Fix date and time tests
+  * [ ] Try this for date https://stackoverflow.com/a/37680581?
   * [X] Wrong TZ because of DST and we're using `time.strftime('%z')`
   * [X] In json_log_formatter there's no TZ
   * [X] log_formatter logrus logstashV1 gets crazy
@@ -69,6 +70,8 @@ $ tail -F /var/log/messages | mmt | ccze -A
 * [X] Deal with BrokenPipeError and KeyboardInterrupt
 * [X] Use [tox-travis](https://pypi.python.org/pypi/tox-travis)?
 * [X] Add option to not replace the TZ when it doesn't exist?
+* [/] Uppgradera logstash confen
+* [/] Add micro benchmark for cat plugin
 * [ ] Add [benchmarks](https://pypi.python.org/pypi/pytest-benchmark/) and run them on TravisCI on every commit. Make sure we log in a structured way so we can create a graph of how slow we are.
   * [ ] Add a few log files for the test:
     * [ ] One huge
@@ -92,7 +95,7 @@ $ tail -F /var/log/messages | mmt | ccze -A
 * [ ] Do the JSON parsing faster
   * [ ] insert them into a FIFO queue
   * [ ] and use a thread worker pool on that queue
-* [ ] Fix bluecoat_convert on these URLs:
+* [X] Fix bluecoat_convert on these URLs:
   * `/_vti_bin/_vti_aut/fp30reg.dll`
   * Support querystrings such as `?client=navclient-auto`
 * [ ] Rewrite bluecoat_converter in Logstash instead of Perl
